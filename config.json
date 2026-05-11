@@ -1,0 +1,22 @@
+{
+  "host": "127.0.0.1",
+  "port": 8080,
+  "buffer_size": 4096,
+  "upload_dir": "storage/uploads/common",
+  "cover_dir": "storage/uploads/covers",
+  "external_cache_dir": "storage/external_cache",
+  "max_audio_size": 104857600,
+  "max_cover_size": 5242880,
+  "session_lifetime_days": 7,
+  "log_file": "app.log",
+  "default_theme": "dark",
+  "cors": {
+    "allowed_origin": "http://127.0.0.1:5500"
+  },
+  "db": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "music_service",
+    "user": "postgres"
+  }
+}

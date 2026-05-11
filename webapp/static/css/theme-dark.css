@@ -1,0 +1,296 @@
+:root {
+    --bg: #090D14;
+    --bg-2: #0F141F;
+    --panel: rgba(24, 31, 45, 0.92);
+    --panel-2: rgba(17, 23, 35, 0.94);
+    --panel-3: #202838;
+    --border: #2B3548;
+    --border-soft: rgba(255, 255, 255, 0.06);
+    --text: #F7F8FB;
+    --muted: #9AA4B6;
+    --accent: #49C5B6;
+    --accent-2: #36B3A6;
+    --warning: #ECD06F;
+    --shadow: 0 18px 60px rgba(0, 0, 0, 0.34);
+}
+
+body {
+    background:
+        radial-gradient(circle at top left, rgba(73, 197, 182, 0.12), transparent 28%),
+        radial-gradient(circle at 70% 8%, rgba(99, 102, 241, 0.08), transparent 28%),
+        var(--bg);
+    color: var(--text);
+}
+
+.sidebar {
+    background: linear-gradient(180deg, rgba(16, 22, 34, 0.97), rgba(11, 16, 24, 0.98));
+    border-right: 1px solid var(--border);
+    box-shadow: 18px 0 60px rgba(0, 0, 0, 0.18);
+}
+
+.logo-block,
+.sidebar-account {
+    border-color: var(--border-soft);
+}
+
+.logo-block {
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.sidebar-account {
+    border-top: 1px solid var(--border-soft);
+}
+
+.logo-icon {
+    background: rgba(73, 197, 182, 0.12);
+    color: var(--accent);
+    border: 1px solid rgba(73, 197, 182, 0.8);
+    box-shadow: 0 0 26px rgba(73, 197, 182, 0.16);
+}
+
+.app-title,
+.panel-header h2,
+.panel-header h3,
+.track-main-info h3,
+.side-track-info h3,
+.bottom-player-title,
+.account-name {
+    color: var(--text);
+}
+
+.app-subtitle,
+.muted-text,
+.track-main-info p,
+.side-track-info p,
+.bottom-player-artist,
+.time-label,
+.account-role {
+    color: var(--muted);
+}
+
+.nav-button {
+    color: var(--text);
+}
+
+.nav-icon {
+    color: var(--text);
+    opacity: 0.96;
+}
+
+.nav-button:hover {
+    background: rgba(255, 255, 255, 0.045);
+    border-color: var(--border);
+}
+
+.nav-button.active {
+    color: var(--accent);
+    background: rgba(73, 197, 182, 0.10);
+    border-color: rgba(73, 197, 182, 0.32);
+}
+
+.nav-button.active .nav-icon {
+    color: var(--accent);
+}
+
+.account-avatar {
+    color: var(--muted);
+    background: var(--panel-3);
+}
+
+.main-content,
+.right-panel {
+    background: transparent;
+}
+
+.right-panel {
+    border-left: 1px solid var(--border);
+}
+
+.icon-button,
+.pill-button,
+.play-inline-button,
+.artist-track-play-button,
+.circle-button,
+.modal-close-button {
+    background: linear-gradient(180deg, var(--accent), var(--accent-2));
+    color: #06100F;
+    border-color: rgba(73, 197, 182, 0.55);
+    box-shadow: 0 10px 24px rgba(73, 197, 182, 0.14);
+}
+
+.icon-button:hover,
+.pill-button:hover,
+.play-inline-button:hover,
+.artist-track-play-button:hover,
+.circle-button:hover,
+.modal-close-button:hover {
+    transform: translateY(-1px);
+    background: linear-gradient(180deg, #5EDFD0, var(--accent));
+    box-shadow: 0 14px 28px rgba(73, 197, 182, 0.22);
+}
+
+.icon-button.is-disabled,
+.icon-button:disabled {
+    background: var(--panel-2);
+    color: #5D687B;
+    border-color: var(--border);
+    box-shadow: none;
+    transform: none;
+}
+
+.icon-button.active {
+    background: rgba(73, 197, 182, 0.10);
+    color: var(--accent);
+}
+
+.search-input-icon {
+    color: #6F7A8E;
+}
+
+.global-topbar-center input,
+.search-box input,
+.form-row input[type="text"],
+.form-row input[type="password"],
+.form-row input[type="email"],
+.form-row input[type="file"],
+.form-row input[type="number"],
+.form-row select,
+.inline-field-group input,
+.inline-field-group select,
+#add-to-playlist-select {
+    background: var(--panel-2);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.global-topbar-center input::placeholder,
+.search-box input::placeholder,
+.form-row input::placeholder,
+.inline-field-group input::placeholder {
+    color: #7E899A;
+}
+
+.global-topbar-center input:focus,
+.search-box input:focus,
+.form-row input[type="text"]:focus,
+.form-row input[type="password"]:focus,
+.form-row input[type="email"]:focus,
+.form-row input[type="file"]:focus,
+.form-row input[type="number"]:focus,
+.form-row select:focus,
+.inline-field-group input:focus,
+.inline-field-group select:focus,
+#add-to-playlist-select:focus {
+    border-color: rgba(73, 197, 182, 0.9);
+    box-shadow: 0 0 0 3px rgba(73, 197, 182, 0.16);
+}
+
+.secondary-button {
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--text);
+    border-color: var(--border);
+    box-shadow: none;
+}
+
+.secondary-button:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--text);
+    border-color: rgba(73, 197, 182, 0.42);
+    box-shadow: none;
+}
+
+.tracks-panel,
+.artist-info-card,
+.modal-content,
+.track-card,
+.dropdown-menu,
+.bottom-player {
+    background: var(--panel);
+    border-color: var(--border);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(16px);
+}
+
+.track-card:hover {
+    border-color: rgba(73, 197, 182, 0.34);
+    transform: translateY(-1px);
+}
+
+.message-box {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.dropdown-item {
+    color: var(--text);
+}
+
+.dropdown-item:hover {
+    background: rgba(73, 197, 182, 0.10);
+    color: var(--accent);
+}
+
+.menu-button {
+    background: transparent;
+    color: var(--muted);
+}
+
+.menu-button:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+}
+
+.side-cover-placeholder,
+.bottom-player-cover-placeholder,
+.playlist-cover-placeholder {
+    background: var(--panel-3);
+    color: var(--accent);
+    border-color: rgba(73, 197, 182, 0.45);
+}
+
+.playlist-cover-placeholder {
+    background: rgba(73, 197, 182, 0.08);
+    border: 1px solid var(--border);
+}
+
+.playlist-create-form {
+    border-color: var(--border-soft);
+}
+
+.artist-track-item {
+    background: var(--panel-2);
+    border-color: var(--border);
+}
+
+.player-close-button {
+    color: var(--muted);
+}
+
+.player-close-button:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: rgba(73, 197, 182, 0.70);
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+.user-role-select {
+    background: var(--panel-2);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.user-role-select:focus {
+    border-color: rgba(73, 197, 182, 0.9);
+    box-shadow: 0 0 0 3px rgba(73, 197, 182, 0.16);
+}
+
+.clickable-link:hover {
+    color: var(--accent);
+}

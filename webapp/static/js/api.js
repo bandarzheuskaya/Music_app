@@ -1,0 +1,294 @@
+const API_BASE = "http://127.0.0.1:8080";
+
+async function apiRequest(path, options = {}) {
+    const response = await fetch(`${API_BASE}${path}`, {
+        credentials: "include",
+        cache: "no-store",
+        ...options,
+        headers: options.headers || undefined
+    });
+
+    if (response.status === 204) {
+        return { status: "success" };
+    }
+
+    try {
+        return await response.json();
+    } catch (_error) {
+        return {
+            status: response.ok ? "success" : "error",
+            message: response.ok ? "OK" : "Ошибка ответа сервера"
+        };
+    }
+}
+
+function buildTrackQuery(type = "all") {
+    const params = new URLSearchParams();
+
+    if (type && type !== "all") {
+        params.set("type", type);
+    }
+
+    const queryString = params.toString();
+    return queryString ? `?${queryString}` : "";
+}
+
+async function apiGetTracks(type = "all") {
+    return apiRequest(`/api/tracks${buildTrackQuery(type)}`);
+}
+
+async function apiSearchTracks(query, type = "all") {
+    const params = new URLSearchParams();
+
+    params.set("q", query || "");
+
+    if (type && type !== "all") {
+        params.set("type", type);
+    }
+
+    return apiRequest(`/api/tracks/search?${params.toString()}`);
+}
+
+async function apiGetArtists() {
+    return apiRequest("/api/artists");
+}
+
+async function apiGetArtistById(artistId) {
+    return apiRequest(`/api/artists/${artistId}`);
+}
+
+async function apiGetArtistTracks(artistId) {
+    return apiRequest(`/api/artists/${artistId}/tracks`);
+}
+
+async function apiGetArtistAlbums(artistId) {
+    return apiRequest(`/api/artists/${artistId}/albums`);
+}
+
+async function apiGetAlbumsByArtist(artist) {
+    return apiRequest(`/api/albums?artist=${encodeURIComponent(artist)}`);
+}
+
+async function apiGetAlbumById(albumId) {
+    return apiRequest(`/api/albums/${albumId}`);
+}
+
+async function apiGetAlbumTracks(albumId) {
+    return apiRequest(`/api/albums/${albumId}/tracks`);
+}
+
+async function apiCreateAlbum(payload) {
+    return apiRequest("/api/albums", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    });
+}
+
+async function apiCreateTrack(formData) {
+    return apiRequest("/api/tracks", {
+        method: "POST",
+        body: formData
+    });
+}
+
+async function apiDeleteTrack(trackId) {
+    return apiRequest(`/api/tracks/${trackId}`, {
+        method: "DELETE"
+    });
+}
+
+async function apiUpdateTrack(trackId, payload) {
+    return apiRequest(`/api/tracks/${trackId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    });
+}
+
+async function apiUpdateTrackCover(trackId, formData) {
+    return apiRequest(`/api/tracks/${trackId}/cover`, {
+        method: "POST",
+        body: formData
+    });
+}
+
+async function apiUpdateAlbum(albumId, payload) {
+    return apiRequest(`/api/albums/${albumId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    });
+}
+
+async function apiUpdateAlbumCover(albumId, formData) {
+    return apiRequest(`/api/albums/${albumId}/cover`, {
+        method: "POST",
+        body: formData
+    });
+}
+
+async function apiUpdateArtistCover(artistId, formData) {
+    return apiRequest(`/api/artists/${artistId}/cover`, {
+        method: "POST",
+        body: formData
+    });
+}
+
+async function apiDeleteCover(entityType, entityId) {
+    return apiRequest(`/api/covers/${entityType}/${entityId}`, {
+        method: "DELETE"
+    });
+}
+
+async function apiRegister(usernameOrPayload, email, password) {
+    const payload = typeof usernameOrPayload === "object"
+        ? usernameOrPayload
+        : {
+            username: usernameOrPayload,
+            email: email,
+            password: password
+        };
+
+    return apiRequest("/api/auth/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    });
+}
+
+async function apiLogin(usernameOrPayload, password) {
+    const payload = typeof usernameOrPayload === "object"
+        ? usernameOrPayload
+        : {
+            username: usernameOrPayload,
+            password: password
+        };
+
+    return apiRequest("/api/auth/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    });
+}
+
+async function apiLogout() {
+    return apiRequest("/api/auth/logout", {
+        method: "POST"
+    });
+}
+
+async function apiGetMe() {
+    return apiRequest("/api/auth/me");
+}
+
+async function apiGetFavorites() {
+    return apiRequest("/api/favorites");
+}
+
+async function apiAddFavorite(trackId) {
+    return apiRequest(`/api/favorites/${trackId}`, {
+        method: "POST"
+    });
+}
+
+async function apiRemoveFavorite(trackId) {
+    return apiRequest(`/api/favorites/${trackId}`, {
+        method: "DELETE"
+    });
+}
+
+async function apiGetPlaylists() {
+    return apiRequest("/api/playlists");
+}
+
+async function apiCreatePlaylist(titleOrPayload) {
+    const payload = typeof titleOrPayload === "object"
+        ? titleOrPayload
+        : {
+            title: titleOrPayload
+        };
+
+    return apiRequest("/api/playlists", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    });
+}
+
+async function apiGetPlaylist(playlistId) {
+    return apiRequest(`/api/playlists/${playlistId}`);
+}
+
+async function apiUpdatePlaylist(playlistId, titleOrPayload) {
+    const payload = typeof titleOrPayload === "object"
+        ? titleOrPayload
+        : {
+            title: titleOrPayload
+        };
+
+    return apiRequest(`/api/playlists/${playlistId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    });
+}
+
+async function apiDeletePlaylist(playlistId) {
+    return apiRequest(`/api/playlists/${playlistId}`, {
+        method: "DELETE"
+    });
+}
+
+async function apiAddTrackToPlaylist(playlistId, trackId) {
+    return apiRequest(`/api/playlists/${playlistId}/tracks/${trackId}`, {
+        method: "POST"
+    });
+}
+
+async function apiRemoveTrackFromPlaylist(playlistId, trackId) {
+    return apiRequest(`/api/playlists/${playlistId}/tracks/${trackId}`, {
+        method: "DELETE"
+    });
+}
+async function apiAdminGetUsers() {
+    return apiRequest("/api/admin/users");
+}
+
+async function apiAdminUpdateUserRole(userId, role) {
+    return apiRequest(`/api/admin/users/${userId}/role`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ role })
+    });
+}
+
+async function apiAdminGetUserTracks(userId) {
+    return apiRequest(`/api/admin/users/${userId}/tracks`);
+}
+
+async function apiAdminDeleteUserTrack(userId, trackId) {
+    return apiRequest(`/api/admin/users/${userId}/tracks/${trackId}`, {
+        method: "DELETE"
+    });
+}
+
+async function apiGetNotifications() {
+    return apiRequest("/api/notifications");
+}
