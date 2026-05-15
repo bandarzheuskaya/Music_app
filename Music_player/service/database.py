@@ -188,9 +188,7 @@ def init_db():
         conn.commit()
 
 
-# =========================
-# USERS
-# =========================
+# Пользователи
 
 def create_user(username, email, password_hash, role="user"):
     with get_connection() as conn:
@@ -259,9 +257,7 @@ def delete_user(user_id):
         conn.commit()
 
 
-# =========================
-# SESSIONS
-# =========================
+# Сессии
 
 def create_session(user_id, session_token, expires_at):
     with get_connection() as conn:
@@ -307,9 +303,7 @@ def delete_expired_sessions():
         conn.commit()
 
 
-# =========================
-# ARTISTS
-# =========================
+# Исполнители
 
 def create_artist(name, cover_filename=None, cover_path=None, cover_hash=None):
     with get_connection() as conn:
@@ -398,9 +392,7 @@ def delete_artist_cover(artist_id):
         conn.commit()
 
 
-# =========================
-# ALBUMS
-# =========================
+# Альбом
 
 def create_album(artist_id, title, year=None, cover_filename=None, cover_path=None, cover_hash=None):
     with get_connection() as conn:
@@ -510,9 +502,7 @@ def delete_album_cover(album_id):
         conn.commit()
 
 
-# =========================
-# TRACKS
-# =========================
+# Треки
 
 def add_track(
     title,
@@ -775,9 +765,7 @@ def public_track_exists(title, artist_id, album_id, exclude_track_id=None):
             return cur.fetchone() is not None
 
 
-# =========================
-# FILE REFERENCES
-# =========================
+# Ссылки на файлы
 
 def find_track_file_by_hash(file_hash):
     with get_connection() as conn:
@@ -872,9 +860,7 @@ def count_cover_references(cover_hash):
             return cur.fetchone()[0]
 
 
-# =========================
-# FAVORITES
-# =========================
+# Избранное
 
 def add_to_favorites(user_id, track_id):
     with get_connection() as conn:
@@ -919,9 +905,7 @@ def is_favorite(user_id, track_id):
             return cur.fetchone() is not None
 
 
-# =========================
-# PLAYLISTS
-# =========================
+# Плейлисты
 
 def create_playlist(user_id, title):
     with get_connection() as conn:
@@ -1011,9 +995,7 @@ def get_playlist_tracks(playlist_id):
             """, (playlist_id,))
             return cur.fetchall()
 
-# =========================
-# ADMIN
-# =========================
+# Админ
 
 def get_all_users():
     with get_connection() as conn:

@@ -1,23 +1,43 @@
-const API_BASE = "http://127.0.0.1:8080";
+const API_BASE = `${window.location.protocol}//${window.location.hostname}:8080`;
 
 async function apiRequest(path, options = {}) {
-    const response = await fetch(`${API_BASE}${path}`, {
-        credentials: "include",
-        cache: "no-store",
-        ...options,
-        headers: options.headers || undefined
-    });
-
-    if (response.status === 204) {
-        return { status: "success" };
-    }
-
     try {
-        return await response.json();
+        const response = await fetch(`${API_BASE}${path}`, {
+            credentials: "include",
+            cache: "no-store",
+            ...options,
+            headers: options.headers || undefined
+        });
+
+        if (response.status === 204) {
+            return { status: "success" };
+        }
+
+        let data = null;
+
+        try {
+            data = await response.json();
+        } catch (_error) {
+            data = null;
+        }
+
+        if (!response.ok) {
+            return {
+                status: "error",
+                message:
+                    data?.message ||
+                    `Ошибка сервера (${response.status})`
+            };
+        }
+
+        return data || {
+            status: "success"
+        };
+
     } catch (_error) {
         return {
-            status: response.ok ? "success" : "error",
-            message: response.ok ? "OK" : "Ошибка ответа сервера"
+            status: "error",
+            message: "Не удалось подключиться к серверу"
         };
     }
 }

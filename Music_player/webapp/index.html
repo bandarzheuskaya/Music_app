@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Melody</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/layout.css">
+    <link rel="stylesheet" href="../static/css/components.css">
+    <link rel="stylesheet" href="../static/css/theme-dark.css">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="logo-block">
+                <div class="logo-icon">♫</div>
+                <div>
+                    <h1 class="app-title">My Melody</h1>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button id="nav-all-tracks-button" class="nav-button active" type="button"><span class="nav-icon">⌂</span><span>Главная</span></button>
+                <button id="nav-my-tracks-button" class="nav-button user-only hidden" type="button"><span class="nav-icon">♪</span><span>Мои треки</span></button>
+                <button id="nav-artists-button" class="nav-button" type="button"><span class="nav-icon">♙</span><span>Исполнители</span></button>
+                <button id="nav-playlists-button" class="nav-button user-only hidden" type="button"><span class="nav-icon">☷</span><span>Плейлисты</span></button>
+                <button id="nav-favorites-button" class="nav-button user-only hidden" type="button"><span class="nav-icon">♡</span><span>Избранное</span></button>
+                <button id="nav-notifications-button" class="nav-button user-only hidden" type="button"><span class="nav-icon">!</span><span>Уведомления</span></button>
+                <button id="nav-users-button" class="nav-button admin-only hidden" type="button"><span class="nav-icon">◎</span><span>Пользователи</span></button>
+            </nav>
+
+            <div class="sidebar-account">
+                <div class="account-summary">
+                    <div class="account-avatar">●</div>
+                    <div>
+                        <div id="account-label" class="account-name">Гость</div>
+                        <div id="account-role-label" class="account-role">Не авторизован</div>
+                    </div>
+                </div>
+                <button id="open-login-modal-button" class="pill-button sidebar-auth-button" type="button">Войти</button>
+                <button id="open-register-modal-button" class="pill-button secondary-button sidebar-auth-button" type="button">Регистрация</button>
+                <button id="logout-button" class="pill-button secondary-button sidebar-auth-button hidden" type="button">Выйти</button>
+            </div>
+
+        </aside>
+
+        <div class="main-column">
+            <div id="shared-topbar"></div>
+            <main id="page-content" class="main-content"></main>
+        </div>
+
+        <aside class="right-panel">
+            <div class="artist-info-card">
+                <div class="cover-wrapper">
+                    <img id="side-cover-image" src="" alt="Обложка" class="side-cover-image hidden">
+                    <div id="side-cover-placeholder" class="side-cover-placeholder">Нет обложки</div>
+                </div>
+
+                <div class="side-track-info">
+                    <h3 id="side-track-title">Трек не выбран</h3>
+                    <p id="side-track-artist">–</p>
+                </div>
+
+                <div class="artist-other-tracks">
+                    <h4>Ещё от исполнителя</h4>
+                    <div id="artist-tracks-list" class="artist-tracks-list">
+                        <div class="muted-text">Сначала включи трек</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <div id="shared-player"></div>
+
+    <div id="upload-modal" class="modal hidden">
+        <div class="modal-backdrop" id="upload-modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Загрузка трека</h2>
+                <button id="close-upload-modal-button" class="modal-close-button" type="button">×</button>
+            </div>
+
+            <form id="upload-form">
+                <div class="form-row">
+                    <label for="title">Название трека</label>
+                    <input id="title" name="title" type="text" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="artist">Исполнитель</label>
+                    <input id="artist" name="artist" type="text" list="artists-datalist" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="album-select">Альбом</label>
+                    <div class="inline-field-group">
+                        <select id="album-select" name="album">
+                            <option value="">Сначала выбери исполнителя</option>
+                        </select>
+                        <button id="open-create-album-button" type="button" class="pill-button secondary-button">
+                            Новый альбом
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label for="file">Аудиофайл</label>
+                    <label class="file-picker-control" for="file">
+                        <span class="file-picker-button">Выбрать файл</span>
+                        <span id="file-name-label" class="file-picker-name">Файл не выбран</span>
+                    </label>
+                    <input id="file" class="file-input-hidden" name="file" type="file" accept=".mp3,.wav,audio/mpeg,audio/wav,audio/x-wav" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="pill-button">Загрузить</button>
+                    <button id="cancel-upload-button" type="button" class="pill-button secondary-button">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-backdrop" id="edit-modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Редактирование трека</h2>
+                <button id="close-edit-modal-button" class="modal-close-button" type="button">×</button>
+            </div>
+
+            <form id="edit-form">
+                <input id="edit-track-id" type="hidden">
+
+                <div class="form-row">
+                    <label for="edit-title">Название трека</label>
+                    <input id="edit-title" name="edit-title" type="text" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="edit-artist">Исполнитель</label>
+                    <input id="edit-artist" name="edit-artist" type="text" list="artists-datalist" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="edit-album-select">Альбом</label>
+                    <div class="inline-field-group">
+                        <select id="edit-album-select" name="edit-album">
+                            <option value="">Сначала выбери исполнителя</option>
+                        </select>
+                        <button id="open-create-album-from-edit-button" type="button" class="pill-button secondary-button">
+                            Новый альбом
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label for="edit-cover">Обложка трека</label>
+                    <input id="edit-cover" name="edit-cover" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="pill-button">Сохранить</button>
+                    <button id="cancel-edit-button" type="button" class="pill-button secondary-button">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="edit-artist-modal" class="modal hidden">
+    <div class="modal-backdrop" id="edit-artist-modal-backdrop"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Редактирование исполнителя</h2>
+            <button id="close-edit-artist-modal-button" class="modal-close-button" type="button">×</button>
+        </div>
+
+        <form id="edit-artist-form">
+            <input id="edit-artist-id" type="hidden">
+
+            <div class="form-row">
+                <label for="edit-artist-cover">Аватарка исполнителя</label>
+                <input id="edit-artist-cover" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+            </div>
+
+            <div class="form-actions">
+    <button type="submit" class="pill-button">Сохранить</button>
+    <button id="delete-artist-cover-button" type="button" class="pill-button secondary-button">Удалить аватарку</button>
+    <button id="cancel-edit-artist-button" type="button" class="pill-button secondary-button">Отмена</button>
+</div>
+
+            
+        </form>
+    </div>
+</div>
+
+    <div id="create-album-modal" class="modal hidden">
+        <div class="modal-backdrop" id="create-album-modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Создать альбом</h2>
+                <button id="close-create-album-modal-button" class="modal-close-button" type="button">×</button>
+            </div>
+
+            <form id="create-album-form">
+                <div class="form-row">
+                    <label for="create-album-artist">Исполнитель</label>
+                    <input id="create-album-artist" type="text" required readonly>
+                </div>
+
+                <div class="form-row">
+                    <label for="create-album-title">Название альбома</label>
+                    <input id="create-album-title" type="text" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="create-album-year">Год</label>
+                    <input id="create-album-year" type="number" min="1900" max="2100" placeholder="Необязательно">
+                </div>
+
+                <div class="form-row">
+                    <label for="create-album-cover">Обложка альбома</label>
+                    <label class="file-picker-control" for="create-album-cover">
+                        <span class="file-picker-button">Выбрать файл</span>
+                        <span id="create-album-cover-name-label" class="file-picker-name">Файл не выбран</span>
+                    </label>
+                    <input id="create-album-cover" class="file-input-hidden" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="pill-button">Создать</button>
+                    <button id="cancel-create-album-button" type="button" class="pill-button secondary-button">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="edit-album-modal" class="modal hidden">
+        <div class="modal-backdrop" id="edit-album-modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Редактирование альбома</h2>
+                <button id="close-edit-album-modal-button" class="modal-close-button" type="button">×</button>
+            </div>
+
+            <form id="edit-album-form">
+                <input id="edit-album-id" type="hidden">
+
+                <div class="form-row">
+                    <label for="edit-album-title">Название альбома</label>
+                    <input id="edit-album-title" type="text" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="edit-album-year">Год</label>
+                    <input id="edit-album-year" type="number" min="1900" max="2100" placeholder="Необязательно">
+                </div>
+
+                <div class="form-row">
+                    <label for="edit-album-cover">Обложка альбома</label>
+                    <input id="edit-album-cover" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="pill-button">Сохранить</button>
+                    <button id="cancel-edit-album-button" type="button" class="pill-button secondary-button">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="login-modal" class="modal hidden">
+        <div class="modal-backdrop" id="login-modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Вход</h2>
+                <button id="close-login-modal-button" class="modal-close-button" type="button">×</button>
+            </div>
+
+            <form id="login-form">
+                <div class="form-row">
+                    <label for="login-username">Username</label>
+                    <input id="login-username" type="text" required>
+                </div>
+                <div class="form-row">
+                    <label for="login-password">Пароль</label>
+                    <input id="login-password" type="password" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="pill-button">Войти</button>
+                    <button id="cancel-login-button" type="button" class="pill-button secondary-button">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="register-modal" class="modal hidden">
+        <div class="modal-backdrop" id="register-modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Регистрация</h2>
+                <button id="close-register-modal-button" class="modal-close-button" type="button">×</button>
+            </div>
+
+            <form id="register-form">
+                <div class="form-row">
+                    <label for="register-username">Username</label>
+                    <input id="register-username" type="text" minlength="3" maxlength="30" required>
+                </div>
+                <div class="form-row">
+                    <label for="register-email">Email</label>
+                    <input id="register-email" type="email" required>
+                </div>
+                <div class="form-row">
+                    <label for="register-password">Пароль</label>
+                    <input id="register-password" type="password" minlength="8" maxlength="72" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="pill-button">Зарегистрироваться</button>
+                    <button id="cancel-register-button" type="button" class="pill-button secondary-button">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="add-to-playlist-modal" class="modal hidden">
+        <div class="modal-backdrop" id="add-to-playlist-modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Добавить в плейлист</h2>
+                <button id="close-add-to-playlist-modal-button" class="modal-close-button" type="button">×</button>
+            </div>
+
+            <form id="add-to-playlist-form">
+                <input id="add-to-playlist-track-id" type="hidden">
+
+                <div class="form-row">
+                    <label for="add-to-playlist-select">Плейлист</label>
+                    <select id="add-to-playlist-select" required></select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="pill-button">Добавить</button>
+                    <button id="cancel-add-to-playlist-button" type="button" class="pill-button secondary-button">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <datalist id="artists-datalist"></datalist>
+
+    <script src="../static/js/topbar.js"></script>
+    <script src="../static/js/api.js"></script>
+    <script src="../static/js/dropdown.js"></script>
+    <script src="../static/js/track_ui.js"></script>
+    <script src="../static/js/player_shell.js"></script>
+    <script src="../static/js/player.js"></script>
+    <script src="../static/js/main.js"></script>
+    <script src="../static/js/router.js"></script>
+</body>
+</html>

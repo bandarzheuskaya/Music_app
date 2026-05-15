@@ -3,11 +3,12 @@ import os
 import re
 import hashlib
 import logging
+import threading
 
 from http.cookies import SimpleCookie
 from urllib.parse import parse_qs, urlparse
 
-from service.settings import CORS_ALLOWED_ORIGIN, LOG_FILE
+from service.settings import LOG_FILE
 
 
 CLIENT_DISCONNECT_ERRORS = (
@@ -15,6 +16,22 @@ CLIENT_DISCONNECT_ERRORS = (
     ConnectionResetError,
     ConnectionAbortedError
 )
+
+
+_request_context = threading.local()
+
+
+def set_request_origin(headers):
+    _request_context.origin = headers.get("origin")
+
+
+def get_cors_origin():
+    origin = getattr(_request_context, "origin", None)
+
+    if origin and origin.endswith(":5500"):
+        return origin
+
+    return None
 
 
 def sanitize_filename(filename):
@@ -51,11 +68,13 @@ def build_response(
     if extra_headers is None:
         extra_headers = {}
 
+    cors_origin = get_cors_origin()
+
     headers = {
         "Content-Type": content_type,
         "Content-Length": str(len(body)),
         "Connection": "close",
-        "Access-Control-Allow-Origin": CORS_ALLOWED_ORIGIN,
+        "Access-Control-Allow-Origin": cors_origin or "null",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type",
         "Access-Control-Allow-Credentials": "true",
@@ -151,6 +170,8 @@ def receive_http_request(client_socket, buffer_size):
     header_part, body_part = data.split(b"\r\n\r\n", 1)
 
     method, path, version, headers = parse_request_headers(header_part)
+
+    set_request_origin(headers)
 
     content_length = int(headers.get("content-length", "0"))
 
@@ -342,6 +363,7 @@ def is_valid_mp3_signature(content):
 
     return False
 
+
 def is_valid_wav_signature(content):
     return (
         len(content) >= 12
@@ -395,6 +417,7 @@ def validate_audio_file(filename, content, max_size):
             return False, "Invalid WAV file signature"
 
     return True, ""
+
 
 def safe_remove_file(file_path):
     if not file_path:

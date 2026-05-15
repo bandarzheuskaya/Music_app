@@ -29,8 +29,6 @@ DB_NAME = CONFIG["db"]["name"]
 DB_USER = CONFIG["db"]["user"]
 DB_PASSWORD = os.getenv("DB_PASSWORD", "")
 
-CORS_ALLOWED_ORIGIN = CONFIG["cors"]["allowed_origin"]
-
 MAX_AUDIO_SIZE = CONFIG.get("max_audio_size", 100 * 1024 * 1024)
 MAX_COVER_SIZE = CONFIG.get("max_cover_size", 5 * 1024 * 1024)
 SESSION_LIFETIME_DAYS = CONFIG.get("session_lifetime_days", 7)
