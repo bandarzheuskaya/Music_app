@@ -294,3 +294,22 @@ body {
 .clickable-link:hover {
     color: var(--accent);
 }
+
+/* PLAYER_BORDER_UPDATE */
+.bottom-player {
+    position: fixed;
+    overflow: hidden;
+
+    border: 1px solid rgba(73, 197, 182, 0.42);
+
+    box-shadow:
+        0 0 0 1px rgba(73, 197, 182, 0.06),
+        0 0 22px rgba(73, 197, 182, 0.10),
+        0 18px 60px rgba(0, 0, 0, 0.42);
+
+    backdrop-filter: blur(16px);
+}
+
+.bottom-player::before {
+    display: none;
+}
