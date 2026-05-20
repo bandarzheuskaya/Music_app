@@ -736,6 +736,32 @@ def user_has_track_with_title(user_id, title, exclude_track_id=None):
 
             return cur.fetchone() is not None
 
+def user_has_track_with_file_hash(user_id, file_hash):
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT 1
+                FROM tracks
+                WHERE user_id = %s
+                  AND file_hash = %s
+                LIMIT 1
+            """, (user_id, file_hash))
+
+            return cur.fetchone() is not None
+
+
+def public_track_exists_by_file_hash(file_hash):
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT 1
+                FROM tracks
+                WHERE user_id IS NULL
+                  AND file_hash = %s
+                LIMIT 1
+            """, (file_hash,))
+
+            return cur.fetchone() is not None
 
 def public_track_exists(title, artist_id, album_id, exclude_track_id=None):
     with get_connection() as conn:

@@ -45,7 +45,7 @@ function setPlayerQueue(tracks, allTracks) {
 function getCoverSrc(track) {
     if (!track) return "";
     const coverUrl = track.effective_cover_url || track.cover_url || track.album_cover_url || "";
-    return coverUrl ? `${API_BASE}${coverUrl}` : "";
+    return coverUrl ? buildMediaUrl(coverUrl) : "";
 }
 
 function updateCoverUI(track) {

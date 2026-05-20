@@ -12,12 +12,25 @@ function getElement(id) {
     return document.getElementById(id);
 }
 
-function showMessage(text) {
+function getUserFriendlyMessage(text) {
+    const messages = {
+        "You already uploaded this track file": "Этот трек уже загружен",
+        "This public track file already exists": "Такой трек уже есть в общей библиотеке",
+        "You already have track with this title": "У вас уже есть трек с таким названием",
+        "Public track already exists": "Такой трек уже есть в общей библиотеке",
+        "This track already exists in the common library": "Этот трек уже есть в общей библиотеке"
+    };
+
+    return messages[text] || text;
+}
+
+function showMessage(text, type = "info") {
     const messageBox = getElement("message-box");
     if (!messageBox) return;
 
-    messageBox.textContent = text;
-    messageBox.classList.remove("hidden");
+    messageBox.textContent = getUserFriendlyMessage(text);
+    messageBox.classList.remove("hidden", "message-success", "message-error", "message-info");
+    messageBox.classList.add(`message-${type}`);
 }
 
 function hideMessage() {
@@ -26,6 +39,7 @@ function hideMessage() {
 
     messageBox.textContent = "";
     messageBox.classList.add("hidden");
+    messageBox.classList.remove("message-success", "message-error", "message-info");
 }
 
 function setFileNameLabel(inputId, labelId, emptyText = "Файл не выбран") {
@@ -602,7 +616,7 @@ function renderAlbumCover(album) {
     if (!image || !placeholder) return;
 
     if (album.cover_url) {
-        image.src = `${API_BASE}${album.cover_url}`;
+        image.src = buildMediaUrl(album.cover_url);
         image.classList.remove("hidden");
         placeholder.classList.add("hidden");
     } else {
@@ -697,7 +711,7 @@ function renderArtistCover(artist) {
     if (!image || !placeholder) return;
 
     if (artist.cover_url) {
-        image.src = `${API_BASE}${artist.cover_url}`;
+        image.src = buildMediaUrl(artist.cover_url);
         image.classList.remove("hidden");
         placeholder.classList.add("hidden");
     } else {
@@ -722,7 +736,7 @@ function renderArtistAlbums(albums) {
         const card = document.createElement("div");
         card.className = "artist-album-card";
 
-        const coverUrl = album.cover_url ? `${API_BASE}${album.cover_url}` : "";
+        const coverUrl = album.cover_url ? buildMediaUrl(album.cover_url) : "";
         const coverHtml = coverUrl
             ? `<img class="artist-album-cover" src="${escapeHtml(coverUrl)}" alt="Обложка альбома">`
             : `<div class="artist-album-cover-placeholder">♪</div>`;
@@ -1750,13 +1764,19 @@ function initGlobalEvents() {
             const result = await apiCreateTrack(formData);
 
             if (result.status === "success") {
-                showMessage("Трек загружен");
-                closeUploadModal();
-                await renderRoute();
-                await loadArtists();
-            } else {
-                showMessage(result.message || "Ошибка загрузки");
-            }
+    closeUploadModal();
+    await renderRoute();
+    showMessage("Трек загружен", "success");
+    await loadArtists();
+} else {
+    await showInfoModal(
+        getUserFriendlyMessage(result.message || "Ошибка загрузки"),
+        {
+            title: "Ошибка загрузки",
+            buttonText: "Понятно"
+        }
+    );
+}
         });
     }
 
@@ -1921,11 +1941,15 @@ function initGlobalEvents() {
         if (event.target?.id === "open-login-modal-button") openLoginModal();
         if (event.target?.id === "open-register-modal-button") openRegisterModal();
         if (event.target?.id === "logout-button") {
-            await apiLogout();
-            currentUser = null;
-            applyRoleToInterface();
-            navigateTo("tracks", { type: "common" });
-        }
+    if (typeof closePlayer === "function") {
+        closePlayer();
+    }
+
+    await apiLogout();
+    currentUser = null;
+    applyRoleToInterface();
+    navigateTo("tracks", { type: "common" });
+}
     });
 
     getElement("close-login-modal-button")?.addEventListener("click", closeLoginModal);

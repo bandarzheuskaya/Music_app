@@ -313,3 +313,41 @@ body {
 .bottom-player::before {
     display: none;
 }
+
+.message-box {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.message-error {
+    background: rgba(228, 91, 91, 0.10);
+    border-color: rgba(228, 91, 91, 0.55);
+    color: #FFD6D6;
+    box-shadow: 0 0 0 1px rgba(228, 91, 91, 0.08);
+}
+
+.message-error::before {
+    color: #FF7A7A;
+}
+
+.message-success {
+    background: rgba(73, 197, 182, 0.10);
+    border-color: rgba(73, 197, 182, 0.55);
+    color: #D7FFFA;
+    box-shadow: 0 0 0 1px rgba(73, 197, 182, 0.08);
+}
+
+.message-success::before {
+    color: var(--accent);
+}
+
+.message-info {
+    background: var(--panel-2);
+    border-color: var(--border);
+    color: var(--text);
+}
+
+.message-info::before {
+    color: var(--accent);
+}

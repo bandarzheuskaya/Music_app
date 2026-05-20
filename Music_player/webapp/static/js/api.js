@@ -312,3 +312,8 @@ async function apiAdminDeleteUserTrack(userId, trackId) {
 async function apiGetNotifications() {
     return apiRequest("/api/notifications");
 }
+
+function buildMediaUrl(path) {
+    if (!path) return "";
+    return `${API_BASE}${path}?t=${Date.now()}`;
+}

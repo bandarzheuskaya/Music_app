@@ -1745,3 +1745,32 @@
         0 0 0 4px rgba(73, 197, 182, 0.13),
         0 6px 16px rgba(0, 0, 0, 0.35);
 }
+
+.message-box {
+    position: relative;
+    padding: 14px 18px 14px 48px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.message-box::before {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+}
+
+.message-error::before {
+    content: "!";
+}
+
+.message-success::before {
+    content: "✓";
+}
+
+.message-info::before {
+    content: "i";
+}

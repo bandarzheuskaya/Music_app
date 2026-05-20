@@ -34,9 +34,9 @@ from service.utils import (
     build_response,
     validate_audio_file,
     validate_cover_file,
+    calculate_bytes_hash,
     log_info,
 )
-
 
 def resolve_artist_and_album_ids(artist_name, album_title):
     artist_name = (artist_name or "").strip()
@@ -170,6 +170,8 @@ def handle_create_track(client_socket, headers, body, current_user):
         )
         return
 
+    file_hash = calculate_bytes_hash(file_content)
+
     is_admin_user = current_user["role"] == "admin"
 
     artist_id = None
@@ -184,6 +186,13 @@ def handle_create_track(client_socket, headers, body, current_user):
             )
             return
 
+        if db.public_track_exists_by_file_hash(file_hash):
+            send_response(
+                client_socket,
+                build_error_response(409, "Conflict", "This public track file already exists"),
+            )
+            return
+
         artist_id, album_id = resolve_artist_and_album_ids(artist, album)
         track_user_id = None
 
@@ -194,10 +203,17 @@ def handle_create_track(client_socket, headers, body, current_user):
             )
             return
     else:
-        if db.user_has_track_with_title(current_user["id"], title):
+        if db.user_has_track_with_file_hash(current_user["id"], file_hash):
             send_response(
                 client_socket,
-                build_error_response(409, "Conflict", "You already have track with this title"),
+                build_error_response(409, "Conflict", "You already uploaded this track file"),
+            )
+            return
+
+        if db.public_track_exists_by_file_hash(file_hash):
+            send_response(
+                client_socket,
+                build_error_response(409, "Conflict", "This track already exists in the common library"),
             )
             return
 
