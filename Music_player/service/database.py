@@ -185,6 +185,56 @@ def init_db():
                 );
             """)
 
+            cur.execute("""
+                CREATE INDEX IF NOT EXISTS idx_sessions_token
+                ON sessions(session_token);
+            """)
+
+            cur.execute("""
+                CREATE INDEX IF NOT EXISTS idx_tracks_user_id
+                ON tracks(user_id);
+            """)
+
+            cur.execute("""
+                CREATE INDEX IF NOT EXISTS idx_tracks_artist_id
+                ON tracks(artist_id);
+            """)
+
+            cur.execute("""
+                CREATE INDEX IF NOT EXISTS idx_tracks_album_id
+                ON tracks(album_id);
+            """)
+
+            cur.execute("""
+                CREATE INDEX IF NOT EXISTS idx_tracks_file_hash
+                ON tracks(file_hash);
+            """)
+
+            cur.execute("""
+                CREATE INDEX IF NOT EXISTS idx_favorites_user_id
+                ON favorites(user_id);
+            """)
+
+            cur.execute("""
+                CREATE INDEX IF NOT EXISTS idx_favorites_track_id
+                ON favorites(track_id);
+            """)
+
+            cur.execute("""
+                CREATE INDEX IF NOT EXISTS idx_playlist_tracks_playlist_id
+                ON playlist_tracks(playlist_id);
+            """)
+
+            cur.execute("""
+                CREATE INDEX IF NOT EXISTS idx_playlist_tracks_track_id
+                ON playlist_tracks(track_id);
+            """)
+
+            cur.execute("""
+                CREATE INDEX IF NOT EXISTS idx_notifications_user_id
+                ON notifications(user_id);
+            """)
+
         conn.commit()
 
 
@@ -282,6 +332,25 @@ def get_session_by_token(session_token):
             """, (session_token,))
             return cur.fetchone()
 
+def get_user_by_session_token(session_token):
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT
+                    u.id,
+                    u.username,
+                    u.email,
+                    u.password_hash,
+                    u.role,
+                    u.created_at,
+                    s.expires_at
+                FROM sessions s
+                JOIN users u ON u.id = s.user_id
+                WHERE s.session_token = %s
+                LIMIT 1
+            """, (session_token,))
+
+            return cur.fetchone()
 
 def delete_session(session_token):
     with get_connection() as conn:

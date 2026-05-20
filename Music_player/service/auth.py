@@ -59,28 +59,33 @@ def get_current_user(headers):
     if not session_token:
         return None
 
-    session = db.get_session_by_token(session_token)
-    if not session:
+    row = db.get_user_by_session_token(session_token)
+
+    if not row:
         return None
 
     (
-        _session_id,
         user_id,
-        _session_token,
-        _created_at,
+        username,
+        email,
+        password_hash,
+        role,
+        created_at,
         expires_at,
-    ) = session
+    ) = row
 
     if expires_at < datetime.now():
         db.delete_session(session_token)
         return None
 
-    user = db.get_user_by_id(user_id)
-    if not user:
-        return None
-
-    return user_to_dict(user)
-
+    return {
+        "id": user_id,
+        "username": username,
+        "email": email,
+        "password_hash": password_hash,
+        "role": role,
+        "created_at": created_at.isoformat() if created_at else None,
+    }
 
 def user_to_dict(user):
     if not user:

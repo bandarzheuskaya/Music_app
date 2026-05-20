@@ -1,5 +1,7 @@
 const API_BASE = `${window.location.protocol}//${window.location.hostname}:8080`;
 
+const apiCache = new Map();
+
 async function apiRequest(path, options = {}) {
     try {
         const response = await fetch(`${API_BASE}${path}`, {
@@ -42,6 +44,26 @@ async function apiRequest(path, options = {}) {
     }
 }
 
+
+async function cachedGet(path, ttl = 30000) {
+    const cached = apiCache.get(path);
+
+    if (cached && Date.now() - cached.time < ttl) {
+        return cached.data;
+    }
+
+    const result = await apiRequest(path);
+
+    if (result.status === "success") {
+        apiCache.set(path, {
+            data: result,
+            time: Date.now()
+        });
+    }
+
+    return result;
+}
+
 function buildTrackQuery(type = "all") {
     const params = new URLSearchParams();
 
@@ -70,11 +92,11 @@ async function apiSearchTracks(query, type = "all") {
 }
 
 async function apiGetArtists() {
-    return apiRequest("/api/artists");
+    return cachedGet("/api/artists");
 }
 
 async function apiGetArtistById(artistId) {
-    return apiRequest(`/api/artists/${artistId}`);
+    return cachedGet(`/api/artists/${artistId}`);
 }
 
 async function apiGetArtistTracks(artistId) {
@@ -82,7 +104,7 @@ async function apiGetArtistTracks(artistId) {
 }
 
 async function apiGetArtistAlbums(artistId) {
-    return apiRequest(`/api/artists/${artistId}/albums`);
+    return cachedGet(`/api/artists/${artistId}/albums`);
 }
 
 async function apiGetAlbumsByArtist(artist) {
@@ -90,7 +112,7 @@ async function apiGetAlbumsByArtist(artist) {
 }
 
 async function apiGetAlbumById(albumId) {
-    return apiRequest(`/api/albums/${albumId}`);
+    return cachedGet(`/api/albums/${albumId}`);
 }
 
 async function apiGetAlbumTracks(albumId) {
@@ -315,5 +337,5 @@ async function apiGetNotifications() {
 
 function buildMediaUrl(path) {
     if (!path) return "";
-    return `${API_BASE}${path}?t=${Date.now()}`;
+    return `${API_BASE}${path}`;
 }

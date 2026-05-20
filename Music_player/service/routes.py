@@ -248,7 +248,7 @@ def dispatch_request(client_socket, method, path_only, query_params, headers, bo
         artist_id = int(match_artist_cover.group(1))
 
         if method == "GET":
-            handle_artist_cover(client_socket, artist_id)
+            handle_artist_cover(client_socket, artist_id, headers)
             return
 
         if method == "POST":
@@ -280,7 +280,7 @@ def dispatch_request(client_socket, method, path_only, query_params, headers, bo
         album_id = int(match_album_cover.group(1))
 
         if method == "GET":
-            handle_album_cover(client_socket, album_id)
+            handle_album_cover(client_socket, album_id, headers)
             return
 
         if method == "POST":
@@ -316,7 +316,7 @@ def dispatch_request(client_socket, method, path_only, query_params, headers, bo
         track_id = int(match_track_cover.group(1))
 
         if method == "GET":
-            handle_cover_track(client_socket, track_id, current_user)
+            handle_cover_track(client_socket, track_id, current_user, headers)
             return
 
         if method == "POST":

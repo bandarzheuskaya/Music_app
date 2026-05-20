@@ -553,7 +553,7 @@ def handle_stream_track(client_socket, track_id, headers, current_user):
         return
 
 
-def send_cover_file(client_socket, cover_path, not_found_message):
+def send_cover_file(client_socket, cover_path, cover_hash, not_found_message, headers):
     if not cover_path:
         send_response(client_socket, build_error_response(404, "Not Found", not_found_message))
         return
@@ -564,16 +564,46 @@ def send_cover_file(client_socket, cover_path, not_found_message):
         send_response(client_socket, build_error_response(404, "Not Found", "Cover file not found"))
         return
 
+    etag = f'"{cover_hash}"' if cover_hash else None
+    client_etag = headers.get("if-none-match")
+
+    if etag and client_etag == etag:
+        response = build_response(
+            304,
+            "Not Modified",
+            body=b"",
+            content_type="text/plain; charset=utf-8",
+            extra_headers={
+                "ETag": etag,
+                "Cache-Control": "no-cache"
+            }
+        )
+        send_response(client_socket, response)
+        return
+
     content_type = get_image_content_type(abs_path)
 
     with open(abs_path, "rb") as f:
         body = f.read()
 
-    response = build_response(200, "OK", body=body, content_type=content_type)
+    extra_headers = {
+        "Cache-Control": "no-cache"
+    }
+
+    if etag:
+        extra_headers["ETag"] = etag
+
+    response = build_response(
+        200,
+        "OK",
+        body=body,
+        content_type=content_type,
+        extra_headers=extra_headers
+    )
     send_response(client_socket, response)
 
 
-def handle_cover_track(client_socket, track_id, current_user):
+def handle_cover_track(client_socket, track_id, current_user, headers):
     track = db.get_track_by_id(track_id)
 
     if not track:
@@ -585,5 +615,6 @@ def handle_cover_track(client_socket, track_id, current_user):
         return
 
     cover_path = track[11]
+    cover_hash = track[12]
 
-    send_cover_file(client_socket, cover_path, "Cover not found")
+    send_cover_file(client_socket, cover_path, cover_hash, "Cover not found", headers)

@@ -27,7 +27,7 @@ from service.utils import (
 )
 
 
-def send_cover_file(client_socket, cover_path, not_found_message):
+def send_cover_file(client_socket, cover_path, cover_hash, not_found_message, headers):
     if not cover_path:
         send_response(client_socket, build_error_response(404, "Not Found", not_found_message))
         return
@@ -38,12 +38,42 @@ def send_cover_file(client_socket, cover_path, not_found_message):
         send_response(client_socket, build_error_response(404, "Not Found", "Cover file not found"))
         return
 
+    etag = f'"{cover_hash}"' if cover_hash else None
+    client_etag = headers.get("if-none-match")
+
+    if etag and client_etag == etag:
+        response = build_response(
+            304,
+            "Not Modified",
+            body=b"",
+            content_type="text/plain; charset=utf-8",
+            extra_headers={
+                "ETag": etag,
+                "Cache-Control": "no-cache"
+            }
+        )
+        send_response(client_socket, response)
+        return
+
     content_type = get_image_content_type(abs_path)
 
     with open(abs_path, "rb") as f:
         body = f.read()
 
-    response = build_response(200, "OK", body=body, content_type=content_type)
+    extra_headers = {
+        "Cache-Control": "no-cache"
+    }
+
+    if etag:
+        extra_headers["ETag"] = etag
+
+    response = build_response(
+        200,
+        "OK",
+        body=body,
+        content_type=content_type,
+        extra_headers=extra_headers
+    )
     send_response(client_socket, response)
 
 
@@ -286,7 +316,7 @@ def handle_update_album(client_socket, album_id, headers, body, current_user):
     send_response(client_socket, build_json_response(200, "OK", payload))
 
 
-def handle_artist_cover(client_socket, artist_id):
+def handle_artist_cover(client_socket, artist_id, headers):
     artist = db.get_artist_by_id(artist_id)
 
     if not artist:
@@ -294,11 +324,12 @@ def handle_artist_cover(client_socket, artist_id):
         return
 
     cover_path = artist[3]
+    cover_hash = artist[4]
 
-    send_cover_file(client_socket, cover_path, "Artist cover not found")
+    send_cover_file(client_socket, cover_path, cover_hash, "Artist cover not found", headers)
 
 
-def handle_album_cover(client_socket, album_id):
+def handle_album_cover(client_socket, album_id, headers):
     album = db.get_album_by_id(album_id)
 
     if not album:
@@ -306,8 +337,9 @@ def handle_album_cover(client_socket, album_id):
         return
 
     cover_path = album[5]
+    cover_hash = album[6]
 
-    send_cover_file(client_socket, cover_path, "Album cover not found")
+    send_cover_file(client_socket, cover_path, cover_hash, "Album cover not found", headers)
 
 
 def handle_update_album_cover(client_socket, album_id, headers, body, current_user):
