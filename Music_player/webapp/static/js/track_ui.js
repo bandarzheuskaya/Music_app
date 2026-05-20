@@ -39,6 +39,8 @@ function renderTrackCards(container, tracks, options = {}) {
         onAddToPlaylist = null,
         onAddFavorite = null,
         onRemoveFavorite = null,
+        onToggleFavorite = null,
+        isFavorite = null,
         onRemoveFromPlaylist = null,
         allowDelete = false
     } = options;
@@ -66,6 +68,12 @@ function renderTrackCards(container, tracks, options = {}) {
         const canModify = typeof canModifyTrackForCurrentUser === "function"
             ? canModifyTrackForCurrentUser(track)
             : showActions;
+
+        const isTrackFavorite = typeof isFavorite === "function"
+            ? Boolean(isFavorite(track))
+            : Boolean(track.is_favorite || track.isFavorite || track.favorite);
+
+        const hasFavoriteButton = showActions && typeof onToggleFavorite === "function";
 
         const hasMenuActions = showActions && (
             canModify ||
@@ -134,9 +142,20 @@ function renderTrackCards(container, tracks, options = {}) {
 
         const actionsHtml = `
             <div class="track-actions">
-                <button class="play-icon-button play-action" type="button">
+                <button class="play-icon-button play-action" type="button" title="Воспроизвести">
                     ▶
                 </button>
+
+                ${hasFavoriteButton ? `
+                    <button
+                        class="favorite-icon-button ${isTrackFavorite ? "active" : ""}"
+                        type="button"
+                        title="${isTrackFavorite ? "Убрать из избранного" : "Добавить в избранное"}"
+                        aria-label="${isTrackFavorite ? "Убрать из избранного" : "Добавить в избранное"}"
+                    >
+                        ${isTrackFavorite ? "♥" : "♡"}
+                    </button>
+                ` : ""}
 
                 ${hasMenuActions ? `
                     <button class="menu-button" type="button">⋯</button>
@@ -207,6 +226,7 @@ function renderTrackCards(container, tracks, options = {}) {
             const deleteButton = card.querySelector(".delete-action");
             const addPlaylistButton = card.querySelector(".add-playlist-action");
             const favoriteButton = card.querySelector(".favorite-action");
+            const favoriteIconButton = card.querySelector(".favorite-icon-button");
             const removeFavoriteButton = card.querySelector(".remove-favorite-action");
             const removePlaylistButton = card.querySelector(".remove-playlist-action");
 
@@ -231,6 +251,12 @@ function renderTrackCards(container, tracks, options = {}) {
             if (favoriteButton) {
                 favoriteButton.addEventListener("click", () => {
                     if (onAddFavorite) onAddFavorite(track);
+                });
+            }
+
+            if (favoriteIconButton) {
+                favoriteIconButton.addEventListener("click", async () => {
+                    await onToggleFavorite(track);
                 });
             }
 

@@ -1774,3 +1774,45 @@
 .message-info::before {
     content: "i";
 }
+
+/* FAVORITE_HEART_BUTTON */
+.favorite-icon-button {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 24px;
+    line-height: 1;
+    transition: 0.2s ease;
+}
+
+.favorite-icon-button:hover {
+    transform: translateY(-1px) scale(1.05);
+    border-color: rgba(73, 197, 182, 0.55);
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.favorite-icon-button.active {
+    border-color: rgba(73, 197, 182, 0.55);
+    background: rgba(73, 197, 182, 0.12);
+    color: var(--accent);
+    box-shadow: 0 10px 24px rgba(73, 197, 182, 0.12);
+}
+
+.favorite-icon-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(73, 197, 182, 0.18);
+}

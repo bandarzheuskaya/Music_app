@@ -7,6 +7,7 @@ let currentUser = null;
 let currentTracksType = "common";
 let currentPlaylist = null;
 let addToPlaylistTrack = null;
+let favoriteTrackIds = new Set();
 
 function getElement(id) {
     return document.getElementById(id);
@@ -40,6 +41,49 @@ function hideMessage() {
     messageBox.textContent = "";
     messageBox.classList.add("hidden");
     messageBox.classList.remove("message-success", "message-error", "message-info");
+}
+
+
+async function refreshFavoriteTrackIds() {
+    favoriteTrackIds = new Set();
+
+    if (!isRegularUser()) {
+        return;
+    }
+
+    const result = await apiGetFavorites();
+
+    if (result.status === "success") {
+        favoriteTrackIds = new Set((result.tracks || []).map((track) => Number(track.id)));
+    }
+}
+
+function isTrackFavorite(track) {
+    return favoriteTrackIds.has(Number(track.id));
+}
+
+async function toggleFavorite(track) {
+    const trackId = Number(track.id);
+    const alreadyFavorite = favoriteTrackIds.has(trackId);
+
+    const result = alreadyFavorite
+        ? await apiRemoveFavorite(trackId)
+        : await apiAddFavorite(trackId);
+
+    if (result.status !== "success") {
+        showMessage(result.message || "Ошибка избранного", "error");
+        return false;
+    }
+
+    if (alreadyFavorite) {
+        favoriteTrackIds.delete(trackId);
+        showMessage("Трек убран из избранного", "success");
+    } else {
+        favoriteTrackIds.add(trackId);
+        showMessage("Трек добавлен в избранное", "success");
+    }
+
+    return true;
 }
 
 function setFileNameLabel(inputId, labelId, emptyText = "Файл не выбран") {
@@ -543,9 +587,10 @@ function renderTracks(tracks) {
         },
         onPlay: (track) => playTrack(track),
         onAddToPlaylist: isRegularUser() ? (track) => openAddToPlaylistModal(track) : null,
-        onAddFavorite: isRegularUser() ? async (track) => {
-            const result = await apiAddFavorite(track.id);
-            showMessage(result.status === "success" ? "Трек добавлен в избранное" : (result.message || "Ошибка избранного"));
+        isFavorite: isTrackFavorite,
+        onToggleFavorite: isRegularUser() ? async (track) => {
+            await toggleFavorite(track);
+            renderTracks(displayedTracksCache);
         } : null
     });
 }
@@ -558,6 +603,7 @@ async function loadTracks(type = currentTracksType) {
 
     if (result.status === "success") {
         allTracksCache = result.tracks || [];
+        await refreshFavoriteTrackIds();
         renderTracks(allTracksCache);
     } else {
         showMessage(result.message || "Ошибка загрузки");
@@ -697,10 +743,18 @@ async function renderAlbumPage(albumId) {
         setPlayerQueue(tracks, tracks);
     }
 
+    await refreshFavoriteTrackIds();
+
     renderTrackCards(getElement("album-tracks-list"), tracks, {
         emptyText: "В альбоме пока нет треков.",
-        showActions: false,
-        onPlay: (track) => playTrack(track)
+        showActions: true,
+        onPlay: (track) => playTrack(track),
+        onAddToPlaylist: isRegularUser() ? (track) => openAddToPlaylistModal(track) : null,
+        isFavorite: isTrackFavorite,
+        onToggleFavorite: isRegularUser() ? async (track) => {
+            await toggleFavorite(track);
+            await renderAlbumPage(albumId);
+        } : null
     });
 }
 
@@ -843,10 +897,18 @@ async function renderArtistPage(artistId) {
         setPlayerQueue(tracks, tracks);
     }
 
+    await refreshFavoriteTrackIds();
+
     renderTrackCards(getElement("artist-tracks-list-page"), tracks, {
         emptyText: "У исполнителя пока нет треков.",
-        showActions: false,
-        onPlay: (track) => playTrack(track)
+        showActions: true,
+        onPlay: (track) => playTrack(track),
+        onAddToPlaylist: isRegularUser() ? (track) => openAddToPlaylistModal(track) : null,
+        isFavorite: isTrackFavorite,
+        onToggleFavorite: isRegularUser() ? async (track) => {
+            await toggleFavorite(track);
+            await renderArtistPage(artistId);
+        } : null
     });
 }
 
@@ -1230,10 +1292,17 @@ async function renderPlaylistPage(playlistId) {
         setPlayerQueue(tracks, tracks);
     }
 
+    await refreshFavoriteTrackIds();
+
     renderTrackCards(list, tracks, {
         emptyText: "В плейлисте пока нет треков.",
         showActions: true,
         onPlay: (track) => playTrack(track),
+        isFavorite: isTrackFavorite,
+        onToggleFavorite: isRegularUser() ? async (track) => {
+            await toggleFavorite(track);
+            await renderPlaylistPage(currentPlaylist.id);
+        } : null,
         onRemoveFromPlaylist: async (track) => {
             const result = await apiRemoveTrackFromPlaylist(currentPlaylist.id, track.id);
             if (result.status !== "success") {
@@ -1279,6 +1348,7 @@ async function renderFavoritesPage() {
     }
 
     const tracks = result.tracks || [];
+    favoriteTrackIds = new Set(tracks.map((track) => Number(track.id)));
     getElement("favorites-count").textContent = `${tracks.length} ${getTracksWord(tracks.length)}`;
 
     if (typeof setPlayerQueue === "function") {
@@ -1290,6 +1360,11 @@ async function renderFavoritesPage() {
         showActions: true,
         onPlay: (track) => playTrack(track),
         onAddToPlaylist: (track) => openAddToPlaylistModal(track),
+        isFavorite: () => true,
+        onToggleFavorite: async (track) => {
+            const changed = await toggleFavorite(track);
+            if (changed) await renderFavoritesPage();
+        },
         onRemoveFavorite: async (track) => {
             const result = await apiRemoveFavorite(track.id);
             if (result.status !== "success") {
