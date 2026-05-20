@@ -642,8 +642,20 @@ async function renderTracksPage(searchQuery = "", type = "common") {
             : "Библиотека треков";
     }
 
-    await loadTracks(currentTracksType);
-    await loadArtists();
+    const homeResult = await apiRequest("/api/home");
+
+if (homeResult.status !== "success") {
+    showMessage(homeResult.message || "Ошибка загрузки");
+    return;
+}
+
+allTracksCache = homeResult.tracks || [];
+
+await refreshFavoriteTrackIds();
+
+renderTracks(allTracksCache);
+
+renderArtists(homeResult.artists || []);
 
     if (searchQuery) {
         const sharedSearchInput = getElement("shared-search-input");
@@ -679,7 +691,7 @@ function renderAlbumLayout() {
         <section class="tracks-panel">
             <div class="artist-header-block">
                 <div class="artist-header-cover">
-                    <img id="album-cover-image" src="" alt="Обложка альбома" class="side-cover-image hidden">
+                    <img id="album-cover-image" src="" loading="lazy" alt="Обложка альбома" class="side-cover-image hidden">
                     <div id="album-cover-placeholder" class="side-cover-placeholder">Нет обложки</div>
                 </div>
 
@@ -792,7 +804,7 @@ function renderArtistAlbums(albums) {
 
         const coverUrl = album.cover_url ? buildMediaUrl(album.cover_url) : "";
         const coverHtml = coverUrl
-            ? `<img class="artist-album-cover" src="${escapeHtml(coverUrl)}" alt="Обложка альбома">`
+            ? `<img class="artist-album-cover" src="${escapeHtml(coverUrl)}" loading="lazy" alt="Обложка альбома">`
             : `<div class="artist-album-cover-placeholder">♪</div>`;
 
         card.innerHTML = `
@@ -818,7 +830,7 @@ function renderArtistLayout() {
         <section class="tracks-panel artist-hero-panel">
             <div class="artist-hero-block">
                 <div class="artist-hero-cover">
-                    <img id="artist-cover-image" src="" alt="Фото исполнителя" class="artist-hero-image hidden">
+                    <img id="artist-cover-image" src="" loading="lazy" alt="Фото исполнителя" class="artist-hero-image hidden">
                     <div id="artist-cover-placeholder" class="artist-hero-placeholder">♪</div>
                 </div>
 

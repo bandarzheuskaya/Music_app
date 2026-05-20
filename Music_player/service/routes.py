@@ -38,6 +38,7 @@ from service.handlers.track_handlers import (
 )
 
 from service.handlers.catalog_handlers import (
+    handle_home_data,
     handle_get_artists,
     handle_get_artist,
     handle_get_artist_tracks,
@@ -118,6 +119,10 @@ def handle_static_route(
         handler(client_socket, headers, body, current_user)
         return True
 
+    if handler == handle_home_data:
+        handler(client_socket, current_user)
+        return True
+
     if handler in (
         handle_get_favorites,
         handle_get_playlists,
@@ -153,6 +158,7 @@ STATIC_ROUTES = {
     ("GET", "/api/admin/users"): handle_admin_get_users,
 
     ("GET", "/api/notifications"): handle_get_notifications,
+    ("GET", "/api/home"): handle_home_data,
 }
 
 

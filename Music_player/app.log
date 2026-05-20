@@ -6631,3 +6631,754 @@
 2026-05-20 17:44:16,554 [INFO] GET /api/albums/1/cover
 2026-05-20 17:44:16,554 [INFO] Connection from ('127.0.0.1', 55909)
 2026-05-20 17:44:16,555 [INFO] GET /api/tracks/5/cover
+2026-05-20 17:55:53,221 [INFO] Service started at http://0.0.0.0:8080
+2026-05-20 17:55:56,441 [INFO] Connection from ('127.0.0.1', 49836)
+2026-05-20 17:55:56,443 [INFO] GET /api/auth/me
+2026-05-20 17:55:56,536 [INFO] Connection from ('127.0.0.1', 49839)
+2026-05-20 17:55:56,536 [INFO] GET /api/tracks
+2026-05-20 17:55:56,635 [INFO] Connection from ('127.0.0.1', 49842)
+2026-05-20 17:55:56,635 [INFO] GET /api/favorites
+2026-05-20 17:55:56,856 [INFO] Connection from ('127.0.0.1', 49845)
+2026-05-20 17:55:56,857 [INFO] GET /api/albums/7/cover
+2026-05-20 17:55:56,857 [INFO] Connection from ('127.0.0.1', 49846)
+2026-05-20 17:55:56,858 [INFO] GET /api/albums/5/cover
+2026-05-20 17:55:56,858 [INFO] Connection from ('127.0.0.1', 49847)
+2026-05-20 17:55:56,860 [INFO] GET /api/albums/6/cover
+2026-05-20 17:55:56,861 [INFO] Connection from ('127.0.0.1', 49848)
+2026-05-20 17:55:56,861 [INFO] Connection from ('127.0.0.1', 49849)
+2026-05-20 17:55:56,862 [INFO] GET /api/albums/2/cover
+2026-05-20 17:55:56,862 [INFO] GET /api/albums/2/cover
+2026-05-20 17:55:56,862 [INFO] Connection from ('127.0.0.1', 49850)
+2026-05-20 17:55:56,863 [INFO] GET /api/albums/4/cover
+2026-05-20 17:55:56,970 [INFO] Connection from ('127.0.0.1', 49863)
+2026-05-20 17:55:56,971 [INFO] GET /api/albums/1/cover
+2026-05-20 17:55:56,971 [INFO] Connection from ('127.0.0.1', 49864)
+2026-05-20 17:55:56,973 [INFO] GET /api/tracks/5/cover
+2026-05-20 17:55:56,973 [INFO] Connection from ('127.0.0.1', 49865)
+2026-05-20 17:55:56,975 [INFO] GET /api/artists
+2026-05-20 17:55:57,740 [INFO] Connection from ('127.0.0.1', 49872)
+2026-05-20 17:55:57,740 [INFO] GET /api/albums/7/cover
+2026-05-20 17:55:57,742 [INFO] Connection from ('127.0.0.1', 49874)
+2026-05-20 17:55:57,742 [INFO] GET /api/tracks/27/stream
+2026-05-20 17:55:59,531 [INFO] Connection from ('127.0.0.1', 49878)
+2026-05-20 17:55:59,532 [INFO] GET /api/albums/6/cover
+2026-05-20 17:55:59,533 [INFO] Connection from ('127.0.0.1', 49879)
+2026-05-20 17:55:59,533 [INFO] GET /api/tracks/26/stream
+2026-05-20 17:56:02,534 [INFO] Connection from ('127.0.0.1', 49885)
+2026-05-20 17:56:02,535 [INFO] GET /api/tracks
+2026-05-20 17:56:02,637 [INFO] Connection from ('127.0.0.1', 49888)
+2026-05-20 17:56:02,638 [INFO] GET /api/favorites
+2026-05-20 17:56:02,739 [INFO] Connection from ('127.0.0.1', 49891)
+2026-05-20 17:56:02,740 [INFO] GET /api/artists
+2026-05-20 17:56:03,888 [INFO] Connection from ('127.0.0.1', 49894)
+2026-05-20 17:56:03,888 [INFO] GET /api/tracks/30/stream
+2026-05-20 17:56:06,569 [INFO] Connection from ('127.0.0.1', 49897)
+2026-05-20 17:56:06,569 [INFO] GET /api/tracks
+2026-05-20 17:56:06,667 [INFO] Connection from ('127.0.0.1', 49900)
+2026-05-20 17:56:06,667 [INFO] GET /api/favorites
+2026-05-20 17:56:06,770 [INFO] Connection from ('127.0.0.1', 49903)
+2026-05-20 17:56:06,771 [INFO] GET /api/albums/7/cover
+2026-05-20 17:56:06,771 [INFO] Connection from ('127.0.0.1', 49904)
+2026-05-20 17:56:06,772 [INFO] GET /api/artists
+2026-05-20 17:56:06,772 [INFO] Connection from ('127.0.0.1', 49905)
+2026-05-20 17:56:06,774 [INFO] GET /api/albums/6/cover
+2026-05-20 17:56:06,774 [INFO] Connection from ('127.0.0.1', 49906)
+2026-05-20 17:56:06,774 [INFO] GET /api/albums/4/cover
+2026-05-20 17:56:06,774 [INFO] Connection from ('127.0.0.1', 49907)
+2026-05-20 17:56:06,776 [INFO] GET /api/albums/5/cover
+2026-05-20 17:56:06,878 [INFO] Connection from ('127.0.0.1', 49918)
+2026-05-20 17:56:06,878 [INFO] GET /api/albums/2/cover
+2026-05-20 17:56:06,879 [INFO] Connection from ('127.0.0.1', 49919)
+2026-05-20 17:56:06,880 [INFO] GET /api/albums/1/cover
+2026-05-20 17:56:06,880 [INFO] Connection from ('127.0.0.1', 49920)
+2026-05-20 17:56:06,882 [INFO] GET /api/tracks/5/cover
+2026-05-20 17:56:08,027 [INFO] Connection from ('127.0.0.1', 49927)
+2026-05-20 17:56:08,027 [INFO] GET /api/albums/7/cover
+2026-05-20 17:56:08,029 [INFO] Connection from ('127.0.0.1', 49929)
+2026-05-20 17:56:08,032 [INFO] GET /api/tracks/27/stream
+2026-05-20 17:59:51,087 [INFO] Connection from ('127.0.0.1', 54045)
+2026-05-20 17:59:51,087 [INFO] GET /api/auth/me
+2026-05-20 17:59:51,176 [INFO] Connection from ('127.0.0.1', 54048)
+2026-05-20 17:59:51,176 [INFO] GET /api/tracks
+2026-05-20 17:59:51,281 [INFO] Connection from ('127.0.0.1', 54051)
+2026-05-20 17:59:51,282 [INFO] GET /api/favorites
+2026-05-20 17:59:51,390 [INFO] Connection from ('127.0.0.1', 54054)
+2026-05-20 17:59:51,391 [INFO] GET /api/albums/7/cover
+2026-05-20 17:59:51,391 [INFO] Connection from ('127.0.0.1', 54055)
+2026-05-20 17:59:51,391 [INFO] GET /api/albums/5/cover
+2026-05-20 17:59:51,391 [INFO] Connection from ('127.0.0.1', 54056)
+2026-05-20 17:59:51,393 [INFO] GET /api/albums/4/cover
+2026-05-20 17:59:51,393 [INFO] Connection from ('127.0.0.1', 54057)
+2026-05-20 17:59:51,394 [INFO] GET /api/albums/6/cover
+2026-05-20 17:59:51,394 [INFO] Connection from ('127.0.0.1', 54058)
+2026-05-20 17:59:51,395 [INFO] Connection from ('127.0.0.1', 54059)
+2026-05-20 17:59:51,395 [INFO] GET /api/albums/1/cover
+2026-05-20 17:59:51,396 [INFO] GET /api/albums/2/cover
+2026-05-20 17:59:51,501 [INFO] Connection from ('127.0.0.1', 54072)
+2026-05-20 17:59:51,502 [INFO] GET /api/tracks/5/cover
+2026-05-20 17:59:51,506 [INFO] Connection from ('127.0.0.1', 54074)
+2026-05-20 17:59:51,507 [INFO] GET /api/artists
+2026-05-20 18:00:04,916 [INFO] Connection from ('127.0.0.1', 51748)
+2026-05-20 18:00:04,916 [INFO] GET /api/auth/me
+2026-05-20 18:00:05,017 [INFO] Connection from ('127.0.0.1', 51751)
+2026-05-20 18:00:05,018 [INFO] GET /api/tracks
+2026-05-20 18:00:05,114 [INFO] Connection from ('127.0.0.1', 51754)
+2026-05-20 18:00:05,115 [INFO] GET /api/favorites
+2026-05-20 18:00:05,215 [INFO] Connection from ('127.0.0.1', 51757)
+2026-05-20 18:00:05,216 [INFO] GET /api/albums/7/cover
+2026-05-20 18:00:05,216 [INFO] Connection from ('127.0.0.1', 51758)
+2026-05-20 18:00:05,217 [INFO] GET /api/albums/6/cover
+2026-05-20 18:00:05,217 [INFO] Connection from ('127.0.0.1', 51759)
+2026-05-20 18:00:05,218 [INFO] GET /api/albums/5/cover
+2026-05-20 18:00:05,219 [INFO] Connection from ('127.0.0.1', 51760)
+2026-05-20 18:00:05,219 [INFO] GET /api/albums/1/cover
+2026-05-20 18:00:05,220 [INFO] Connection from ('127.0.0.1', 51761)
+2026-05-20 18:00:05,221 [INFO] GET /api/albums/2/cover
+2026-05-20 18:00:05,221 [INFO] Connection from ('127.0.0.1', 51762)
+2026-05-20 18:00:05,221 [INFO] GET /api/albums/4/cover
+2026-05-20 18:00:05,324 [INFO] Connection from ('127.0.0.1', 51775)
+2026-05-20 18:00:05,324 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:00:05,325 [INFO] Connection from ('127.0.0.1', 51776)
+2026-05-20 18:00:05,326 [INFO] GET /api/artists
+2026-05-20 18:00:09,449 [INFO] Connection from ('127.0.0.1', 51781)
+2026-05-20 18:00:09,450 [INFO] GET /api/albums/7/cover
+2026-05-20 18:00:09,476 [INFO] Connection from ('127.0.0.1', 51783)
+2026-05-20 18:00:09,477 [INFO] GET /api/tracks/27/stream
+2026-05-20 18:00:10,024 [INFO] Connection from ('127.0.0.1', 51787)
+2026-05-20 18:00:10,025 [INFO] GET /api/tracks
+2026-05-20 18:00:10,143 [INFO] Connection from ('127.0.0.1', 51790)
+2026-05-20 18:00:10,143 [INFO] GET /api/artists/17
+2026-05-20 18:00:10,144 [INFO] Connection from ('127.0.0.1', 51791)
+2026-05-20 18:00:10,144 [INFO] GET /api/artists/1
+2026-05-20 18:00:10,144 [INFO] Connection from ('127.0.0.1', 51792)
+2026-05-20 18:00:10,146 [INFO] GET /api/artists/5
+2026-05-20 18:00:10,146 [INFO] Connection from ('127.0.0.1', 51793)
+2026-05-20 18:00:10,147 [INFO] GET /api/artists/19
+2026-05-20 18:00:10,350 [INFO] Connection from ('127.0.0.1', 51802)
+2026-05-20 18:00:10,351 [INFO] GET /api/artists/17/cover
+2026-05-20 18:00:10,351 [INFO] Connection from ('127.0.0.1', 51803)
+2026-05-20 18:00:10,351 [INFO] GET /api/artists/5/cover
+2026-05-20 18:00:13,377 [INFO] Connection from ('127.0.0.1', 51809)
+2026-05-20 18:00:13,377 [INFO] GET /api/tracks
+2026-05-20 18:00:13,484 [INFO] Connection from ('127.0.0.1', 51812)
+2026-05-20 18:00:13,484 [INFO] GET /api/favorites
+2026-05-20 18:00:13,590 [INFO] Connection from ('127.0.0.1', 51815)
+2026-05-20 18:00:13,591 [INFO] GET /api/albums/7/cover
+2026-05-20 18:00:13,591 [INFO] Connection from ('127.0.0.1', 51816)
+2026-05-20 18:00:13,591 [INFO] GET /api/albums/6/cover
+2026-05-20 18:00:13,591 [INFO] Connection from ('127.0.0.1', 51817)
+2026-05-20 18:00:13,592 [INFO] GET /api/albums/1/cover
+2026-05-20 18:00:13,593 [INFO] Connection from ('127.0.0.1', 51818)
+2026-05-20 18:00:13,593 [INFO] Connection from ('127.0.0.1', 51819)
+2026-05-20 18:00:13,594 [INFO] GET /api/albums/2/cover
+2026-05-20 18:00:13,594 [INFO] GET /api/albums/4/cover
+2026-05-20 18:00:13,594 [INFO] Connection from ('127.0.0.1', 51820)
+2026-05-20 18:00:13,595 [INFO] GET /api/albums/5/cover
+2026-05-20 18:00:13,695 [INFO] Connection from ('127.0.0.1', 51833)
+2026-05-20 18:00:13,695 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:00:13,699 [INFO] Connection from ('127.0.0.1', 51835)
+2026-05-20 18:00:13,700 [INFO] GET /api/artists
+2026-05-20 18:04:28,317 [INFO] Connection from ('127.0.0.1', 64013)
+2026-05-20 18:04:28,318 [INFO] GET /api/auth/me
+2026-05-20 18:04:28,411 [INFO] Connection from ('127.0.0.1', 64016)
+2026-05-20 18:04:28,412 [INFO] GET /api/tracks
+2026-05-20 18:04:28,510 [INFO] Connection from ('127.0.0.1', 64019)
+2026-05-20 18:04:28,511 [INFO] GET /api/favorites
+2026-05-20 18:04:28,615 [INFO] Connection from ('127.0.0.1', 64022)
+2026-05-20 18:04:28,616 [INFO] GET /api/albums/7/cover
+2026-05-20 18:04:28,616 [INFO] Connection from ('127.0.0.1', 64023)
+2026-05-20 18:04:28,616 [INFO] GET /api/artists
+2026-05-20 18:04:28,617 [INFO] Connection from ('127.0.0.1', 64024)
+2026-05-20 18:04:28,618 [INFO] GET /api/albums/6/cover
+2026-05-20 18:04:28,618 [INFO] Connection from ('127.0.0.1', 64025)
+2026-05-20 18:04:28,619 [INFO] GET /api/albums/2/cover
+2026-05-20 18:04:28,620 [INFO] Connection from ('127.0.0.1', 64026)
+2026-05-20 18:04:28,622 [INFO] GET /api/albums/4/cover
+2026-05-20 18:04:28,623 [INFO] Connection from ('127.0.0.1', 64027)
+2026-05-20 18:04:28,626 [INFO] GET /api/albums/5/cover
+2026-05-20 18:04:28,727 [INFO] Connection from ('127.0.0.1', 64040)
+2026-05-20 18:04:28,728 [INFO] GET /api/albums/1/cover
+2026-05-20 18:04:28,730 [INFO] Connection from ('127.0.0.1', 64042)
+2026-05-20 18:04:28,731 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:04:36,273 [INFO] Connection from ('127.0.0.1', 64055)
+2026-05-20 18:04:36,274 [INFO] GET /api/tracks/27/stream
+2026-05-20 18:04:37,880 [INFO] Connection from ('127.0.0.1', 64059)
+2026-05-20 18:04:37,881 [INFO] GET /api/tracks
+2026-05-20 18:04:37,985 [INFO] Connection from ('127.0.0.1', 64062)
+2026-05-20 18:04:37,985 [INFO] GET /api/favorites
+2026-05-20 18:04:38,181 [INFO] Connection from ('127.0.0.1', 64065)
+2026-05-20 18:04:38,182 [INFO] GET /api/artists
+2026-05-20 18:04:38,725 [INFO] Connection from ('127.0.0.1', 64068)
+2026-05-20 18:04:38,726 [INFO] GET /api/tracks
+2026-05-20 18:04:38,830 [INFO] Connection from ('127.0.0.1', 64071)
+2026-05-20 18:04:38,831 [INFO] GET /api/favorites
+2026-05-20 18:04:38,932 [INFO] Connection from ('127.0.0.1', 64074)
+2026-05-20 18:04:38,933 [INFO] GET /api/artists
+2026-05-20 18:04:44,115 [INFO] Connection from ('127.0.0.1', 64078)
+2026-05-20 18:04:44,116 [INFO] GET /api/tracks
+2026-05-20 18:04:44,213 [INFO] Connection from ('127.0.0.1', 64081)
+2026-05-20 18:04:44,214 [INFO] GET /api/favorites
+2026-05-20 18:04:44,307 [INFO] Connection from ('127.0.0.1', 64084)
+2026-05-20 18:04:44,307 [INFO] GET /api/artists
+2026-05-20 18:04:46,385 [INFO] Connection from ('127.0.0.1', 64089)
+2026-05-20 18:04:46,386 [INFO] GET /api/tracks
+2026-05-20 18:04:46,488 [INFO] Connection from ('127.0.0.1', 64092)
+2026-05-20 18:04:46,488 [INFO] GET /api/favorites
+2026-05-20 18:04:46,701 [INFO] Connection from ('127.0.0.1', 64095)
+2026-05-20 18:04:46,702 [INFO] GET /api/artists
+2026-05-20 18:04:50,428 [INFO] Connection from ('127.0.0.1', 64099)
+2026-05-20 18:04:50,428 [INFO] GET /api/tracks
+2026-05-20 18:04:50,538 [INFO] Connection from ('127.0.0.1', 64102)
+2026-05-20 18:04:50,538 [INFO] GET /api/favorites
+2026-05-20 18:04:50,644 [INFO] Connection from ('127.0.0.1', 64105)
+2026-05-20 18:04:50,645 [INFO] GET /api/artists
+2026-05-20 18:04:52,841 [INFO] Connection from ('127.0.0.1', 64108)
+2026-05-20 18:04:52,842 [INFO] GET /api/tracks
+2026-05-20 18:04:52,947 [INFO] Connection from ('127.0.0.1', 64111)
+2026-05-20 18:04:52,948 [INFO] GET /api/favorites
+2026-05-20 18:04:53,052 [INFO] Connection from ('127.0.0.1', 64114)
+2026-05-20 18:04:53,053 [INFO] GET /api/artists
+2026-05-20 18:05:55,573 [INFO] Connection from ('127.0.0.1', 64128)
+2026-05-20 18:05:55,574 [INFO] POST /api/auth/logout
+2026-05-20 18:05:55,678 [INFO] Connection from ('127.0.0.1', 64131)
+2026-05-20 18:05:55,679 [INFO] GET /api/tracks
+2026-05-20 18:05:55,727 [INFO] Connection from ('127.0.0.1', 64133)
+2026-05-20 18:05:55,728 [INFO] GET /api/artists
+2026-05-20 18:06:13,692 [INFO] Connection from ('127.0.0.1', 64137)
+2026-05-20 18:06:13,694 [INFO] Connection from ('127.0.0.1', 64138)
+2026-05-20 18:06:13,694 [INFO] OPTIONS /api/auth/login
+2026-05-20 18:06:13,735 [INFO] POST /api/auth/login
+2026-05-20 18:06:14,010 [INFO] User logged in: admin
+2026-05-20 18:06:14,015 [INFO] Connection from ('127.0.0.1', 64141)
+2026-05-20 18:06:14,016 [INFO] GET /api/tracks
+2026-05-20 18:06:14,211 [INFO] Connection from ('127.0.0.1', 64144)
+2026-05-20 18:06:14,212 [INFO] GET /api/artists
+2026-05-20 18:06:16,426 [INFO] Connection from ('127.0.0.1', 64148)
+2026-05-20 18:06:16,427 [INFO] GET /api/albums
+2026-05-20 18:06:24,606 [INFO] Connection from ('127.0.0.1', 64153)
+2026-05-20 18:06:24,608 [INFO] Connection from ('127.0.0.1', 64154)
+2026-05-20 18:06:24,609 [INFO] OPTIONS /api/tracks/27
+2026-05-20 18:06:24,610 [INFO] PUT /api/tracks/27
+2026-05-20 18:06:24,828 [INFO] Track updated: 27
+2026-05-20 18:06:24,837 [INFO] Connection from ('127.0.0.1', 64161)
+2026-05-20 18:06:24,837 [INFO] POST /api/tracks/27/cover
+2026-05-20 18:06:24,986 [INFO] Track cover updated: 27
+2026-05-20 18:06:25,116 [INFO] Connection from ('127.0.0.1', 64166)
+2026-05-20 18:06:25,116 [INFO] GET /api/tracks
+2026-05-20 18:06:25,382 [INFO] Connection from ('127.0.0.1', 64169)
+2026-05-20 18:06:25,383 [INFO] GET /api/tracks/27/cover
+2026-05-20 18:06:25,383 [INFO] Connection from ('127.0.0.1', 64170)
+2026-05-20 18:06:25,384 [INFO] GET /api/artists
+2026-05-20 18:06:25,493 [INFO] Connection from ('127.0.0.1', 64175)
+2026-05-20 18:06:25,493 [INFO] GET /api/artists
+2026-05-20 18:06:42,055 [INFO] Connection from ('127.0.0.1', 64180)
+2026-05-20 18:06:42,056 [INFO] GET /api/tracks
+2026-05-20 18:06:42,142 [INFO] Connection from ('127.0.0.1', 64183)
+2026-05-20 18:06:42,143 [INFO] GET /api/artists
+2026-05-20 18:07:02,226 [INFO] Connection from ('127.0.0.1', 50167)
+2026-05-20 18:07:02,226 [INFO] GET /api/albums
+2026-05-20 18:07:18,124 [INFO] Connection from ('127.0.0.1', 50172)
+2026-05-20 18:07:18,125 [INFO] Connection from ('127.0.0.1', 50173)
+2026-05-20 18:07:18,125 [INFO] OPTIONS /api/tracks/27
+2026-05-20 18:07:18,126 [INFO] DELETE /api/tracks/27
+2026-05-20 18:07:18,423 [ERROR] Failed to remove file C:\me\Учеба\КСиС\Курсовая\Music_player\storage\uploads\common\Metallica_-_Enter_Sandman_Remastered_2021_79389638.mp3: [WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\me\\Учеба\\КСиС\\Курсовая\\Music_player\\storage\\uploads\\common\\Metallica_-_Enter_Sandman_Remastered_2021_79389638.mp3'
+2026-05-20 18:07:18,459 [INFO] Track deleted: 27
+2026-05-20 18:07:18,464 [INFO] Connection from ('127.0.0.1', 50179)
+2026-05-20 18:07:18,464 [INFO] GET /api/tracks
+2026-05-20 18:07:18,549 [INFO] Connection from ('127.0.0.1', 50182)
+2026-05-20 18:07:18,549 [INFO] GET /api/artists
+2026-05-20 18:07:35,799 [INFO] Connection from ('127.0.0.1', 50192)
+2026-05-20 18:07:35,800 [INFO] GET /api/tracks
+2026-05-20 18:07:35,897 [INFO] Connection from ('127.0.0.1', 50195)
+2026-05-20 18:07:35,898 [INFO] GET /api/artists/17
+2026-05-20 18:07:35,898 [INFO] Connection from ('127.0.0.1', 50196)
+2026-05-20 18:07:35,898 [INFO] GET /api/artists/5
+2026-05-20 18:07:35,898 [INFO] Connection from ('127.0.0.1', 50197)
+2026-05-20 18:07:35,900 [INFO] GET /api/artists/1
+2026-05-20 18:07:36,096 [INFO] Connection from ('127.0.0.1', 50204)
+2026-05-20 18:07:36,096 [INFO] GET /api/artists/5/cover
+2026-05-20 18:07:36,096 [INFO] Connection from ('127.0.0.1', 50205)
+2026-05-20 18:07:36,097 [INFO] GET /api/artists/17/cover
+2026-05-20 18:07:37,186 [INFO] Connection from ('127.0.0.1', 50210)
+2026-05-20 18:07:37,187 [INFO] GET /api/tracks
+2026-05-20 18:07:37,288 [INFO] Connection from ('127.0.0.1', 50213)
+2026-05-20 18:07:37,289 [INFO] GET /api/artists
+2026-05-20 18:08:10,900 [INFO] Connection from ('127.0.0.1', 50218)
+2026-05-20 18:08:10,901 [INFO] GET /api/albums
+2026-05-20 18:08:26,241 [INFO] Connection from ('127.0.0.1', 50224)
+2026-05-20 18:08:26,243 [INFO] Connection from ('127.0.0.1', 50225)
+2026-05-20 18:08:26,244 [INFO] OPTIONS /api/albums
+2026-05-20 18:08:26,246 [INFO] POST /api/albums
+2026-05-20 18:08:26,363 [INFO] Album created: Metallica, admin=admin
+2026-05-20 18:08:26,386 [INFO] Connection from ('127.0.0.1', 50229)
+2026-05-20 18:08:26,387 [INFO] POST /api/albums/7/cover
+2026-05-20 18:08:26,533 [INFO] Album cover updated: 7, admin=admin
+2026-05-20 18:08:26,539 [INFO] Connection from ('127.0.0.1', 50234)
+2026-05-20 18:08:26,540 [INFO] GET /api/albums
+2026-05-20 18:08:38,617 [INFO] Connection from ('127.0.0.1', 50239)
+2026-05-20 18:08:41,408 [INFO] POST /api/tracks
+2026-05-20 18:08:41,715 [INFO] Track created: Enter Sandman, user_id=None
+2026-05-20 18:08:41,787 [INFO] Connection from ('127.0.0.1', 50247)
+2026-05-20 18:08:41,788 [INFO] GET /api/tracks
+2026-05-20 18:08:41,867 [INFO] Connection from ('127.0.0.1', 50250)
+2026-05-20 18:08:41,868 [INFO] GET /api/artists
+2026-05-20 18:08:41,970 [INFO] Connection from ('127.0.0.1', 50253)
+2026-05-20 18:08:41,971 [INFO] GET /api/artists
+2026-05-20 18:09:53,432 [INFO] Connection from ('127.0.0.1', 59116)
+2026-05-20 18:09:53,433 [INFO] GET /api/tracks/31/stream
+2026-05-20 18:10:58,256 [INFO] Connection from ('127.0.0.1', 59495)
+2026-05-20 18:10:58,257 [INFO] GET /api/auth/me
+2026-05-20 18:10:58,357 [INFO] Connection from ('127.0.0.1', 59498)
+2026-05-20 18:10:58,358 [INFO] GET /api/tracks
+2026-05-20 18:10:58,460 [INFO] Connection from ('127.0.0.1', 59501)
+2026-05-20 18:10:58,461 [INFO] GET /api/albums/7/cover
+2026-05-20 18:10:58,461 [INFO] Connection from ('127.0.0.1', 59502)
+2026-05-20 18:10:58,462 [INFO] GET /api/artists
+2026-05-20 18:10:58,462 [INFO] Connection from ('127.0.0.1', 59503)
+2026-05-20 18:10:58,463 [INFO] GET /api/albums/6/cover
+2026-05-20 18:10:58,464 [INFO] Connection from ('127.0.0.1', 59504)
+2026-05-20 18:10:58,464 [INFO] GET /api/albums/2/cover
+2026-05-20 18:10:58,464 [INFO] Connection from ('127.0.0.1', 59505)
+2026-05-20 18:10:58,466 [INFO] GET /api/albums/4/cover
+2026-05-20 18:10:58,466 [INFO] Connection from ('127.0.0.1', 59506)
+2026-05-20 18:10:58,466 [INFO] GET /api/albums/5/cover
+2026-05-20 18:10:58,570 [INFO] Connection from ('127.0.0.1', 59518)
+2026-05-20 18:10:58,570 [INFO] GET /api/albums/1/cover
+2026-05-20 18:10:58,571 [INFO] Connection from ('127.0.0.1', 59519)
+2026-05-20 18:10:58,572 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:14:32,642 [INFO] Connection from ('127.0.0.1', 56165)
+2026-05-20 18:14:32,642 [INFO] GET /api/auth/me
+2026-05-20 18:14:32,839 [INFO] Connection from ('127.0.0.1', 56168)
+2026-05-20 18:14:32,840 [INFO] GET /api/tracks
+2026-05-20 18:14:32,950 [INFO] Connection from ('127.0.0.1', 56171)
+2026-05-20 18:14:32,950 [INFO] GET /api/albums/7/cover
+2026-05-20 18:14:32,950 [INFO] Connection from ('127.0.0.1', 56172)
+2026-05-20 18:14:32,951 [INFO] GET /api/artists
+2026-05-20 18:14:32,952 [INFO] Connection from ('127.0.0.1', 56173)
+2026-05-20 18:14:32,953 [INFO] GET /api/albums/6/cover
+2026-05-20 18:14:32,953 [INFO] Connection from ('127.0.0.1', 56174)
+2026-05-20 18:14:32,954 [INFO] Connection from ('127.0.0.1', 56176)
+2026-05-20 18:14:32,954 [INFO] GET /api/albums/2/cover
+2026-05-20 18:14:32,954 [INFO] GET /api/albums/4/cover
+2026-05-20 18:14:32,954 [INFO] Connection from ('127.0.0.1', 56177)
+2026-05-20 18:14:32,956 [INFO] GET /api/albums/5/cover
+2026-05-20 18:14:33,062 [INFO] Connection from ('127.0.0.1', 56189)
+2026-05-20 18:14:33,063 [INFO] GET /api/albums/2/cover
+2026-05-20 18:14:33,063 [INFO] Connection from ('127.0.0.1', 56190)
+2026-05-20 18:14:33,065 [INFO] Connection from ('127.0.0.1', 56191)
+2026-05-20 18:14:33,065 [INFO] GET /api/albums/1/cover
+2026-05-20 18:14:33,066 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:14:36,437 [INFO] Connection from ('127.0.0.1', 50093)
+2026-05-20 18:14:36,438 [INFO] GET /api/auth/me
+2026-05-20 18:14:36,551 [INFO] Connection from ('127.0.0.1', 50096)
+2026-05-20 18:14:36,552 [INFO] GET /api/tracks
+2026-05-20 18:14:36,658 [INFO] Connection from ('127.0.0.1', 50099)
+2026-05-20 18:14:36,659 [INFO] GET /api/albums/7/cover
+2026-05-20 18:14:36,659 [INFO] Connection from ('127.0.0.1', 50100)
+2026-05-20 18:14:36,660 [INFO] Connection from ('127.0.0.1', 50101)
+2026-05-20 18:14:36,661 [INFO] GET /api/albums/6/cover
+2026-05-20 18:14:36,662 [INFO] GET /api/albums/1/cover
+2026-05-20 18:14:36,662 [INFO] Connection from ('127.0.0.1', 50102)
+2026-05-20 18:14:36,663 [INFO] GET /api/albums/2/cover
+2026-05-20 18:14:36,663 [INFO] Connection from ('127.0.0.1', 50103)
+2026-05-20 18:14:36,664 [INFO] GET /api/albums/4/cover
+2026-05-20 18:14:36,664 [INFO] Connection from ('127.0.0.1', 50104)
+2026-05-20 18:14:36,666 [INFO] GET /api/albums/5/cover
+2026-05-20 18:14:36,768 [INFO] Connection from ('127.0.0.1', 50117)
+2026-05-20 18:14:36,769 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:14:36,769 [INFO] Connection from ('127.0.0.1', 50118)
+2026-05-20 18:14:36,770 [INFO] GET /api/artists
+2026-05-20 18:14:40,291 [INFO] Connection from ('127.0.0.1', 50123)
+2026-05-20 18:14:40,292 [INFO] GET /api/tracks
+2026-05-20 18:14:40,396 [INFO] Connection from ('127.0.0.1', 50126)
+2026-05-20 18:14:40,396 [INFO] GET /api/artists/17
+2026-05-20 18:14:40,396 [INFO] Connection from ('127.0.0.1', 50127)
+2026-05-20 18:14:40,397 [INFO] GET /api/artists/5
+2026-05-20 18:14:40,397 [INFO] Connection from ('127.0.0.1', 50129)
+2026-05-20 18:14:40,398 [INFO] GET /api/artists/19
+2026-05-20 18:14:40,398 [INFO] Connection from ('127.0.0.1', 50130)
+2026-05-20 18:14:40,399 [INFO] GET /api/artists/1
+2026-05-20 18:14:40,598 [INFO] Connection from ('127.0.0.1', 50139)
+2026-05-20 18:14:40,599 [INFO] GET /api/artists/17/cover
+2026-05-20 18:14:40,599 [INFO] Connection from ('127.0.0.1', 50140)
+2026-05-20 18:14:40,600 [INFO] GET /api/artists/5/cover
+2026-05-20 18:14:41,977 [INFO] Connection from ('127.0.0.1', 50145)
+2026-05-20 18:14:41,978 [INFO] GET /api/tracks
+2026-05-20 18:14:42,095 [INFO] Connection from ('127.0.0.1', 50148)
+2026-05-20 18:14:42,096 [INFO] GET /api/albums/7/cover
+2026-05-20 18:14:42,096 [INFO] Connection from ('127.0.0.1', 50149)
+2026-05-20 18:14:42,096 [INFO] GET /api/albums/5/cover
+2026-05-20 18:14:42,096 [INFO] Connection from ('127.0.0.1', 50150)
+2026-05-20 18:14:42,098 [INFO] GET /api/albums/6/cover
+2026-05-20 18:14:42,098 [INFO] Connection from ('127.0.0.1', 50151)
+2026-05-20 18:14:42,098 [INFO] GET /api/albums/4/cover
+2026-05-20 18:14:42,098 [INFO] Connection from ('127.0.0.1', 50152)
+2026-05-20 18:14:42,100 [INFO] GET /api/albums/1/cover
+2026-05-20 18:14:42,100 [INFO] Connection from ('127.0.0.1', 50153)
+2026-05-20 18:14:42,100 [INFO] GET /api/albums/2/cover
+2026-05-20 18:14:42,204 [INFO] Connection from ('127.0.0.1', 50165)
+2026-05-20 18:14:42,205 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:14:56,324 [INFO] Connection from ('127.0.0.1', 55017)
+2026-05-20 18:14:56,325 [INFO] GET /api/tracks
+2026-05-20 18:14:56,543 [INFO] Connection from ('127.0.0.1', 55020)
+2026-05-20 18:14:56,544 [INFO] GET /api/albums/7/cover
+2026-05-20 18:14:56,544 [INFO] Connection from ('127.0.0.1', 55021)
+2026-05-20 18:14:56,544 [INFO] GET /api/albums/5/cover
+2026-05-20 18:14:56,545 [INFO] Connection from ('127.0.0.1', 55022)
+2026-05-20 18:14:56,546 [INFO] GET /api/albums/6/cover
+2026-05-20 18:14:56,546 [INFO] Connection from ('127.0.0.1', 55023)
+2026-05-20 18:14:56,546 [INFO] GET /api/albums/1/cover
+2026-05-20 18:14:56,547 [INFO] Connection from ('127.0.0.1', 55024)
+2026-05-20 18:14:56,548 [INFO] GET /api/albums/2/cover
+2026-05-20 18:14:56,548 [INFO] Connection from ('127.0.0.1', 55025)
+2026-05-20 18:14:56,549 [INFO] GET /api/albums/4/cover
+2026-05-20 18:14:56,653 [INFO] Connection from ('127.0.0.1', 55038)
+2026-05-20 18:14:56,653 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:15:14,946 [INFO] Connection from ('127.0.0.1', 55046)
+2026-05-20 18:15:14,947 [INFO] GET /api/tracks
+2026-05-20 18:15:15,147 [INFO] Connection from ('127.0.0.1', 55049)
+2026-05-20 18:15:15,148 [INFO] GET /api/albums/7/cover
+2026-05-20 18:15:15,148 [INFO] Connection from ('127.0.0.1', 55050)
+2026-05-20 18:15:15,148 [INFO] GET /api/albums/6/cover
+2026-05-20 18:15:15,148 [INFO] Connection from ('127.0.0.1', 55051)
+2026-05-20 18:15:15,150 [INFO] GET /api/albums/5/cover
+2026-05-20 18:15:15,150 [INFO] Connection from ('127.0.0.1', 55052)
+2026-05-20 18:15:15,151 [INFO] GET /api/albums/1/cover
+2026-05-20 18:15:15,151 [INFO] Connection from ('127.0.0.1', 55053)
+2026-05-20 18:15:15,152 [INFO] GET /api/albums/2/cover
+2026-05-20 18:15:15,152 [INFO] Connection from ('127.0.0.1', 55054)
+2026-05-20 18:15:15,153 [INFO] GET /api/albums/4/cover
+2026-05-20 18:15:15,260 [INFO] Connection from ('127.0.0.1', 55067)
+2026-05-20 18:15:15,261 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:15:15,261 [INFO] Connection from ('127.0.0.1', 55068)
+2026-05-20 18:15:15,262 [INFO] GET /api/artists
+2026-05-20 18:16:26,335 [INFO] Connection from ('127.0.0.1', 55093)
+2026-05-20 18:16:26,336 [INFO] GET /api/auth/me
+2026-05-20 18:16:26,438 [INFO] Connection from ('127.0.0.1', 55096)
+2026-05-20 18:16:26,439 [INFO] GET /api/tracks
+2026-05-20 18:16:26,548 [INFO] Connection from ('127.0.0.1', 55099)
+2026-05-20 18:16:26,549 [INFO] GET /api/artists
+2026-05-20 18:16:26,549 [INFO] Connection from ('127.0.0.1', 55100)
+2026-05-20 18:16:26,550 [INFO] Connection from ('127.0.0.1', 55101)
+2026-05-20 18:16:26,551 [INFO] GET /api/albums/5/cover
+2026-05-20 18:16:26,551 [INFO] GET /api/albums/6/cover
+2026-05-20 18:16:26,551 [INFO] Connection from ('127.0.0.1', 55102)
+2026-05-20 18:16:26,552 [INFO] GET /api/albums/7/cover
+2026-05-20 18:16:26,553 [INFO] Connection from ('127.0.0.1', 55103)
+2026-05-20 18:16:26,553 [INFO] GET /api/albums/2/cover
+2026-05-20 18:16:26,553 [INFO] Connection from ('127.0.0.1', 55104)
+2026-05-20 18:16:26,554 [INFO] GET /api/albums/4/cover
+2026-05-20 18:16:26,654 [INFO] Connection from ('127.0.0.1', 55116)
+2026-05-20 18:16:26,654 [INFO] GET /api/albums/1/cover
+2026-05-20 18:16:26,657 [INFO] Connection from ('127.0.0.1', 55118)
+2026-05-20 18:16:26,777 [INFO] Connection from ('127.0.0.1', 55122)
+2026-05-20 18:16:26,777 [INFO] GET /api/auth/me
+2026-05-20 18:16:26,972 [INFO] Connection from ('127.0.0.1', 55125)
+2026-05-20 18:16:26,973 [INFO] GET /api/tracks
+2026-05-20 18:16:27,086 [INFO] Connection from ('127.0.0.1', 55128)
+2026-05-20 18:16:27,086 [INFO] GET /api/albums/7/cover
+2026-05-20 18:16:27,086 [INFO] Connection from ('127.0.0.1', 55129)
+2026-05-20 18:16:27,087 [INFO] GET /api/albums/6/cover
+2026-05-20 18:16:27,087 [INFO] Connection from ('127.0.0.1', 55130)
+2026-05-20 18:16:27,089 [INFO] GET /api/albums/5/cover
+2026-05-20 18:16:27,089 [INFO] Connection from ('127.0.0.1', 55131)
+2026-05-20 18:16:27,090 [INFO] GET /api/albums/1/cover
+2026-05-20 18:16:27,090 [INFO] Connection from ('127.0.0.1', 55132)
+2026-05-20 18:16:27,090 [INFO] GET /api/albums/2/cover
+2026-05-20 18:16:27,091 [INFO] Connection from ('127.0.0.1', 55134)
+2026-05-20 18:16:27,092 [INFO] GET /api/albums/4/cover
+2026-05-20 18:16:27,194 [INFO] Connection from ('127.0.0.1', 55146)
+2026-05-20 18:16:27,194 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:16:27,195 [INFO] Connection from ('127.0.0.1', 55147)
+2026-05-20 18:16:27,196 [INFO] GET /api/artists
+2026-05-20 18:16:34,285 [INFO] Connection from ('127.0.0.1', 55152)
+2026-05-20 18:16:34,286 [INFO] GET /api/tracks
+2026-05-20 18:16:36,865 [INFO] Connection from ('127.0.0.1', 55156)
+2026-05-20 18:16:36,866 [INFO] GET /api/tracks
+2026-05-20 18:16:38,960 [INFO] Connection from ('127.0.0.1', 55159)
+2026-05-20 18:16:38,961 [INFO] GET /api/tracks/31/stream
+2026-05-20 18:16:41,834 [INFO] Connection from ('127.0.0.1', 55162)
+2026-05-20 18:16:41,835 [INFO] GET /api/admin/users
+2026-05-20 18:16:43,511 [INFO] Connection from ('127.0.0.1', 55165)
+2026-05-20 18:16:43,512 [INFO] GET /api/tracks
+2026-05-20 18:16:43,615 [INFO] Connection from ('127.0.0.1', 55168)
+2026-05-20 18:16:43,616 [INFO] GET /api/artists/17
+2026-05-20 18:16:43,616 [INFO] Connection from ('127.0.0.1', 55169)
+2026-05-20 18:16:43,616 [INFO] GET /api/artists/19
+2026-05-20 18:16:43,616 [INFO] Connection from ('127.0.0.1', 55170)
+2026-05-20 18:16:43,618 [INFO] GET /api/artists/5
+2026-05-20 18:16:43,618 [INFO] Connection from ('127.0.0.1', 55171)
+2026-05-20 18:16:43,619 [INFO] GET /api/artists/1
+2026-05-20 18:16:43,724 [INFO] Connection from ('127.0.0.1', 55180)
+2026-05-20 18:16:43,725 [INFO] GET /api/artists/17/cover
+2026-05-20 18:16:43,725 [INFO] Connection from ('127.0.0.1', 55181)
+2026-05-20 18:16:43,725 [INFO] GET /api/artists/5/cover
+2026-05-20 18:16:49,244 [INFO] Connection from ('127.0.0.1', 55186)
+2026-05-20 18:16:49,244 [INFO] GET /api/tracks
+2026-05-20 18:19:04,206 [INFO] Connection from ('127.0.0.1', 53943)
+2026-05-20 18:19:04,207 [INFO] GET /api/auth/me
+2026-05-20 18:19:04,319 [INFO] Connection from ('127.0.0.1', 53946)
+2026-05-20 18:19:04,320 [INFO] GET /api/tracks
+2026-05-20 18:19:04,539 [INFO] Connection from ('127.0.0.1', 53949)
+2026-05-20 18:19:04,540 [INFO] GET /api/artists
+2026-05-20 18:19:04,540 [INFO] Connection from ('127.0.0.1', 53950)
+2026-05-20 18:19:04,540 [INFO] Connection from ('127.0.0.1', 53951)
+2026-05-20 18:19:04,541 [INFO] GET /api/albums/4/cover
+2026-05-20 18:19:04,542 [INFO] GET /api/albums/5/cover
+2026-05-20 18:19:04,542 [INFO] Connection from ('127.0.0.1', 53952)
+2026-05-20 18:19:04,543 [INFO] GET /api/albums/6/cover
+2026-05-20 18:19:04,543 [INFO] Connection from ('127.0.0.1', 53953)
+2026-05-20 18:19:04,545 [INFO] GET /api/albums/7/cover
+2026-05-20 18:19:04,545 [INFO] Connection from ('127.0.0.1', 53954)
+2026-05-20 18:19:04,546 [INFO] GET /api/albums/2/cover
+2026-05-20 18:19:04,650 [INFO] Connection from ('127.0.0.1', 53967)
+2026-05-20 18:19:04,651 [INFO] GET /api/albums/1/cover
+2026-05-20 18:19:04,652 [INFO] Connection from ('127.0.0.1', 53968)
+2026-05-20 18:19:04,653 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:19:20,209 [INFO] Connection from ('127.0.0.1', 53982)
+2026-05-20 18:19:20,210 [INFO] GET /api/auth/me
+2026-05-20 18:19:20,339 [INFO] Connection from ('127.0.0.1', 53985)
+2026-05-20 18:19:20,340 [INFO] GET /api/tracks
+2026-05-20 18:19:20,472 [INFO] Connection from ('127.0.0.1', 53988)
+2026-05-20 18:19:20,473 [INFO] GET /api/artists
+2026-05-20 18:19:20,473 [INFO] Connection from ('127.0.0.1', 53989)
+2026-05-20 18:19:20,474 [INFO] GET /api/albums/7/cover
+2026-05-20 18:19:20,474 [INFO] Connection from ('127.0.0.1', 53990)
+2026-05-20 18:19:20,476 [INFO] GET /api/albums/6/cover
+2026-05-20 18:19:20,476 [INFO] Connection from ('127.0.0.1', 53991)
+2026-05-20 18:19:20,477 [INFO] GET /api/albums/5/cover
+2026-05-20 18:19:20,477 [INFO] Connection from ('127.0.0.1', 53992)
+2026-05-20 18:19:20,477 [INFO] GET /api/albums/4/cover
+2026-05-20 18:19:20,478 [INFO] Connection from ('127.0.0.1', 53994)
+2026-05-20 18:19:20,479 [INFO] GET /api/albums/2/cover
+2026-05-20 18:19:20,581 [INFO] Connection from ('127.0.0.1', 54006)
+2026-05-20 18:19:20,581 [INFO] GET /api/albums/1/cover
+2026-05-20 18:19:20,582 [INFO] Connection from ('127.0.0.1', 54007)
+2026-05-20 18:19:20,583 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:21:00,266 [INFO] Connection from ('127.0.0.1', 55696)
+2026-05-20 18:21:00,266 [INFO] GET /api/auth/me
+2026-05-20 18:21:00,361 [INFO] Connection from ('127.0.0.1', 55699)
+2026-05-20 18:21:00,362 [INFO] GET /api/tracks
+2026-05-20 18:21:00,500 [INFO] Connection from ('127.0.0.1', 55702)
+2026-05-20 18:21:00,500 [INFO] GET /api/artists
+2026-05-20 18:21:00,501 [INFO] Connection from ('127.0.0.1', 55703)
+2026-05-20 18:21:00,501 [INFO] Connection from ('127.0.0.1', 55704)
+2026-05-20 18:21:00,502 [INFO] GET /api/albums/5/cover
+2026-05-20 18:21:00,502 [INFO] GET /api/albums/6/cover
+2026-05-20 18:21:00,503 [INFO] Connection from ('127.0.0.1', 55705)
+2026-05-20 18:21:00,504 [INFO] GET /api/albums/7/cover
+2026-05-20 18:21:00,504 [INFO] Connection from ('127.0.0.1', 55706)
+2026-05-20 18:21:00,506 [INFO] GET /api/albums/4/cover
+2026-05-20 18:21:00,506 [INFO] Connection from ('127.0.0.1', 55708)
+2026-05-20 18:21:00,507 [INFO] GET /api/albums/2/cover
+2026-05-20 18:21:00,607 [INFO] Connection from ('127.0.0.1', 55720)
+2026-05-20 18:21:00,607 [INFO] GET /api/albums/1/cover
+2026-05-20 18:21:00,612 [INFO] Connection from ('127.0.0.1', 55722)
+2026-05-20 18:21:00,612 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:46:43,730 [INFO] Service started at http://0.0.0.0:8080
+2026-05-20 18:46:46,873 [INFO] Connection from ('127.0.0.1', 54373)
+2026-05-20 18:46:46,874 [INFO] GET /api/auth/me
+2026-05-20 18:46:46,973 [INFO] Connection from ('127.0.0.1', 54376)
+2026-05-20 18:46:46,974 [INFO] GET /api/home
+2026-05-20 18:46:47,128 [INFO] Connection from ('127.0.0.1', 54380)
+2026-05-20 18:46:47,129 [INFO] Connection from ('127.0.0.1', 54381)
+2026-05-20 18:46:47,129 [INFO] GET /api/albums/7/cover
+2026-05-20 18:46:47,129 [INFO] Connection from ('127.0.0.1', 54382)
+2026-05-20 18:46:47,130 [INFO] GET /api/albums/1/cover
+2026-05-20 18:46:47,130 [INFO] GET /api/albums/2/cover
+2026-05-20 18:46:47,131 [INFO] Connection from ('127.0.0.1', 54383)
+2026-05-20 18:46:47,132 [INFO] GET /api/albums/4/cover
+2026-05-20 18:46:47,132 [INFO] Connection from ('127.0.0.1', 54384)
+2026-05-20 18:46:47,133 [INFO] GET /api/albums/5/cover
+2026-05-20 18:46:47,134 [INFO] Connection from ('127.0.0.1', 54385)
+2026-05-20 18:46:47,134 [INFO] GET /api/albums/6/cover
+2026-05-20 18:46:47,241 [INFO] Connection from ('127.0.0.1', 54398)
+2026-05-20 18:46:47,241 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:46:51,399 [INFO] Connection from ('127.0.0.1', 54403)
+2026-05-20 18:46:51,400 [INFO] GET /api/tracks/31/stream
+2026-05-20 18:46:53,504 [INFO] Connection from ('127.0.0.1', 54406)
+2026-05-20 18:46:53,504 [INFO] GET /api/tracks/26/stream
+2026-05-20 18:46:54,882 [INFO] Connection from ('127.0.0.1', 54409)
+2026-05-20 18:46:54,882 [INFO] GET /api/tracks/21/stream
+2026-05-20 18:46:56,484 [INFO] Connection from ('127.0.0.1', 54412)
+2026-05-20 18:46:56,485 [INFO] GET /api/tracks/13/stream
+2026-05-20 18:46:58,076 [INFO] Connection from ('127.0.0.1', 54415)
+2026-05-20 18:46:58,077 [INFO] GET /api/tracks/12/stream
+2026-05-20 18:46:59,666 [INFO] Connection from ('127.0.0.1', 54418)
+2026-05-20 18:46:59,667 [INFO] GET /api/tracks/7/stream
+2026-05-20 18:47:01,094 [INFO] Connection from ('127.0.0.1', 54421)
+2026-05-20 18:47:01,095 [INFO] GET /api/tracks/6/stream
+2026-05-20 18:47:12,127 [INFO] Connection from ('127.0.0.1', 58516)
+2026-05-20 18:47:12,128 [INFO] GET /api/home
+2026-05-20 18:47:14,454 [INFO] Connection from ('127.0.0.1', 58527)
+2026-05-20 18:47:14,454 [INFO] GET /api/auth/me
+2026-05-20 18:47:14,556 [INFO] Connection from ('127.0.0.1', 58530)
+2026-05-20 18:47:14,556 [INFO] GET /api/home
+2026-05-20 18:47:14,700 [INFO] Connection from ('127.0.0.1', 58534)
+2026-05-20 18:47:14,701 [INFO] Connection from ('127.0.0.1', 58535)
+2026-05-20 18:47:14,701 [INFO] GET /api/albums/7/cover
+2026-05-20 18:47:14,701 [INFO] Connection from ('127.0.0.1', 58536)
+2026-05-20 18:47:14,702 [INFO] GET /api/albums/5/cover
+2026-05-20 18:47:14,702 [INFO] Connection from ('127.0.0.1', 58537)
+2026-05-20 18:47:14,702 [INFO] GET /api/albums/4/cover
+2026-05-20 18:47:14,704 [INFO] GET /api/albums/6/cover
+2026-05-20 18:47:14,704 [INFO] Connection from ('127.0.0.1', 58538)
+2026-05-20 18:47:14,705 [INFO] GET /api/albums/1/cover
+2026-05-20 18:47:14,705 [INFO] Connection from ('127.0.0.1', 58539)
+2026-05-20 18:47:14,705 [INFO] GET /api/albums/2/cover
+2026-05-20 18:47:14,811 [INFO] Connection from ('127.0.0.1', 58552)
+2026-05-20 18:47:14,811 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:52:29,853 [INFO] Connection from ('127.0.0.1', 55967)
+2026-05-20 18:52:29,854 [INFO] GET /api/auth/me
+2026-05-20 18:52:29,958 [INFO] Connection from ('127.0.0.1', 55970)
+2026-05-20 18:52:29,958 [INFO] GET /api/home
+2026-05-20 18:52:30,104 [INFO] Connection from ('127.0.0.1', 55974)
+2026-05-20 18:52:30,104 [INFO] Connection from ('127.0.0.1', 55975)
+2026-05-20 18:52:30,105 [INFO] GET /api/albums/7/cover
+2026-05-20 18:52:30,105 [INFO] Connection from ('127.0.0.1', 55976)
+2026-05-20 18:52:30,105 [INFO] GET /api/albums/6/cover
+2026-05-20 18:52:30,106 [INFO] GET /api/albums/4/cover
+2026-05-20 18:52:30,106 [INFO] Connection from ('127.0.0.1', 55977)
+2026-05-20 18:52:30,108 [INFO] GET /api/albums/5/cover
+2026-05-20 18:52:30,108 [INFO] Connection from ('127.0.0.1', 55978)
+2026-05-20 18:52:30,109 [INFO] GET /api/albums/2/cover
+2026-05-20 18:52:30,109 [INFO] Connection from ('127.0.0.1', 55979)
+2026-05-20 18:52:30,110 [INFO] GET /api/albums/1/cover
+2026-05-20 18:52:30,218 [INFO] Connection from ('127.0.0.1', 55992)
+2026-05-20 18:52:30,218 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:59:09,745 [INFO] Connection from ('127.0.0.1', 58862)
+2026-05-20 18:59:09,745 [INFO] GET /api/auth/me
+2026-05-20 18:59:09,842 [INFO] Connection from ('127.0.0.1', 58865)
+2026-05-20 18:59:09,843 [INFO] GET /api/home
+2026-05-20 18:59:09,993 [INFO] Connection from ('127.0.0.1', 58869)
+2026-05-20 18:59:09,993 [INFO] Connection from ('127.0.0.1', 58870)
+2026-05-20 18:59:09,994 [INFO] GET /api/albums/7/cover
+2026-05-20 18:59:09,994 [INFO] GET /api/albums/6/cover
+2026-05-20 18:59:09,996 [INFO] Connection from ('127.0.0.1', 58873)
+2026-05-20 18:59:09,996 [INFO] GET /api/albums/5/cover
+2026-05-20 18:59:09,996 [INFO] Connection from ('127.0.0.1', 58874)
+2026-05-20 18:59:09,998 [INFO] GET /api/albums/4/cover
+2026-05-20 18:59:09,998 [INFO] Connection from ('127.0.0.1', 58875)
+2026-05-20 18:59:09,999 [INFO] GET /api/albums/2/cover
+2026-05-20 18:59:09,999 [INFO] Connection from ('127.0.0.1', 58876)
+2026-05-20 18:59:09,999 [INFO] GET /api/albums/1/cover
+2026-05-20 18:59:10,087 [INFO] Connection from ('127.0.0.1', 58885)
+2026-05-20 18:59:10,088 [INFO] GET /api/tracks/5/cover
+2026-05-20 18:59:13,277 [INFO] Connection from ('127.0.0.1', 58892)
+2026-05-20 18:59:13,277 [INFO] GET /api/auth/me
+2026-05-20 18:59:13,382 [INFO] Connection from ('127.0.0.1', 58895)
+2026-05-20 18:59:13,383 [INFO] GET /api/home
+2026-05-20 18:59:13,526 [INFO] Connection from ('127.0.0.1', 58899)
+2026-05-20 18:59:13,526 [INFO] GET /api/albums/7/cover
+2026-05-20 18:59:13,526 [INFO] Connection from ('127.0.0.1', 58900)
+2026-05-20 18:59:13,527 [INFO] Connection from ('127.0.0.1', 58901)
+2026-05-20 18:59:13,527 [INFO] GET /api/albums/6/cover
+2026-05-20 18:59:13,528 [INFO] GET /api/albums/1/cover
+2026-05-20 18:59:13,528 [INFO] Connection from ('127.0.0.1', 58902)
+2026-05-20 18:59:13,530 [INFO] GET /api/albums/2/cover
+2026-05-20 18:59:13,530 [INFO] Connection from ('127.0.0.1', 58903)
+2026-05-20 18:59:13,530 [INFO] GET /api/albums/4/cover
+2026-05-20 18:59:13,531 [INFO] Connection from ('127.0.0.1', 58904)
+2026-05-20 18:59:13,531 [INFO] GET /api/albums/5/cover
+2026-05-20 18:59:13,625 [INFO] Connection from ('127.0.0.1', 58915)
+2026-05-20 18:59:13,626 [INFO] GET /api/tracks/5/cover
+2026-05-20 19:07:39,119 [INFO] Connection from ('127.0.0.1', 54986)
+2026-05-20 19:07:39,120 [INFO] GET /api/auth/me
+2026-05-20 19:07:39,229 [INFO] Connection from ('127.0.0.1', 54989)
+2026-05-20 19:07:39,230 [INFO] GET /api/home
+2026-05-20 19:07:39,398 [INFO] Connection from ('127.0.0.1', 54993)
+2026-05-20 19:07:39,398 [INFO] GET /api/albums/7/cover
+2026-05-20 19:07:39,398 [INFO] Connection from ('127.0.0.1', 54994)
+2026-05-20 19:07:39,399 [INFO] GET /api/albums/6/cover
+2026-05-20 19:07:39,399 [INFO] Connection from ('127.0.0.1', 54995)
+2026-05-20 19:07:39,400 [INFO] GET /api/albums/5/cover
+2026-05-20 19:07:39,400 [INFO] Connection from ('127.0.0.1', 54996)
+2026-05-20 19:07:39,401 [INFO] GET /api/albums/4/cover
+2026-05-20 19:07:39,401 [INFO] Connection from ('127.0.0.1', 54997)
+2026-05-20 19:07:39,402 [INFO] GET /api/albums/2/cover
+2026-05-20 19:07:39,402 [INFO] Connection from ('127.0.0.1', 54999)
+2026-05-20 19:07:39,403 [INFO] GET /api/albums/1/cover
+2026-05-20 19:07:39,502 [INFO] Connection from ('127.0.0.1', 55011)
+2026-05-20 19:07:39,503 [INFO] GET /api/tracks/5/cover
+2026-05-20 19:07:54,518 [INFO] Connection from ('127.0.0.1', 55017)
+2026-05-20 19:07:54,518 [INFO] GET /api/home
+2026-05-20 19:08:11,516 [INFO] Connection from ('127.0.0.1', 55026)
+2026-05-20 19:08:11,516 [INFO] GET /api/tracks
+2026-05-20 19:08:11,617 [INFO] Connection from ('127.0.0.1', 55029)
+2026-05-20 19:08:11,618 [INFO] GET /api/artists/17
+2026-05-20 19:08:11,618 [INFO] Connection from ('127.0.0.1', 55030)
+2026-05-20 19:08:11,618 [INFO] GET /api/artists/5
+2026-05-20 19:08:11,619 [INFO] Connection from ('127.0.0.1', 55031)
+2026-05-20 19:08:11,620 [INFO] GET /api/artists/19
+2026-05-20 19:08:11,620 [INFO] Connection from ('127.0.0.1', 55032)
+2026-05-20 19:08:11,621 [INFO] GET /api/artists/1
+2026-05-20 19:08:11,818 [INFO] Connection from ('127.0.0.1', 55041)
+2026-05-20 19:08:11,818 [INFO] GET /api/artists/17/cover
+2026-05-20 19:08:11,818 [INFO] Connection from ('127.0.0.1', 55042)
+2026-05-20 19:08:11,819 [INFO] GET /api/artists/5/cover
+2026-05-20 19:08:14,003 [INFO] Connection from ('127.0.0.1', 55047)
+2026-05-20 19:08:14,004 [INFO] GET /api/admin/users
+2026-05-20 19:08:17,611 [INFO] Connection from ('127.0.0.1', 55051)
+2026-05-20 19:08:17,612 [INFO] GET /api/home
+2026-05-20 20:47:52,316 [INFO] Service started at http://0.0.0.0:8080
+2026-05-20 20:47:52,439 [INFO] Connection from ('127.0.0.1', 51721)
+2026-05-20 20:47:52,442 [INFO] GET /api/home
+2026-05-20 20:47:52,706 [INFO] Connection from ('127.0.0.1', 51722)
+2026-05-20 20:47:52,726 [INFO] GET /api/albums/7/cover
+2026-05-20 20:47:52,727 [INFO] Connection from ('127.0.0.1', 51727)
+2026-05-20 20:47:52,728 [INFO] GET /api/albums/6/cover
+2026-05-20 20:47:52,728 [INFO] Connection from ('127.0.0.1', 51729)
+2026-05-20 20:47:52,728 [INFO] GET /api/albums/5/cover
+2026-05-20 20:47:52,729 [INFO] Connection from ('127.0.0.1', 51730)
+2026-05-20 20:47:52,730 [INFO] GET /api/albums/4/cover
+2026-05-20 20:47:52,730 [INFO] Connection from ('127.0.0.1', 51731)
+2026-05-20 20:47:52,731 [INFO] GET /api/albums/2/cover
+2026-05-20 20:47:52,731 [INFO] Connection from ('127.0.0.1', 51733)
+2026-05-20 20:47:52,731 [INFO] GET /api/albums/1/cover
+2026-05-20 20:47:52,828 [INFO] Connection from ('127.0.0.1', 51744)
+2026-05-20 20:47:52,829 [INFO] GET /api/tracks/5/cover
+2026-05-20 20:49:53,002 [INFO] Connection from ('127.0.0.1', 57611)
+2026-05-20 20:49:53,003 [INFO] GET /api/tracks
+2026-05-20 20:49:53,108 [INFO] Connection from ('127.0.0.1', 57614)
+2026-05-20 20:49:53,108 [INFO] GET /api/artists/17
+2026-05-20 20:49:53,108 [INFO] Connection from ('127.0.0.1', 57615)
+2026-05-20 20:49:53,109 [INFO] GET /api/artists/5
+2026-05-20 20:49:53,109 [INFO] Connection from ('127.0.0.1', 57616)
+2026-05-20 20:49:53,110 [INFO] GET /api/artists/19
+2026-05-20 20:49:53,110 [INFO] Connection from ('127.0.0.1', 57617)
+2026-05-20 20:49:53,110 [INFO] GET /api/artists/1
+2026-05-20 20:49:53,300 [INFO] Connection from ('127.0.0.1', 57626)
+2026-05-20 20:49:53,301 [INFO] GET /api/artists/17/cover
+2026-05-20 20:49:53,301 [INFO] Connection from ('127.0.0.1', 57627)
+2026-05-20 20:49:53,301 [INFO] GET /api/artists/5/cover
+2026-05-20 20:50:37,374 [INFO] Connection from ('127.0.0.1', 57641)
+2026-05-20 20:50:37,414 [INFO] Connection from ('127.0.0.1', 57642)
+2026-05-20 20:50:37,415 [INFO] OPTIONS /api/auth/login
+2026-05-20 20:50:37,435 [INFO] POST /api/auth/login
+2026-05-20 20:50:37,765 [INFO] User logged in: wesforia
+2026-05-20 20:50:37,783 [INFO] Connection from ('127.0.0.1', 57646)
+2026-05-20 20:50:37,784 [INFO] GET /api/tracks
+2026-05-20 20:50:37,867 [INFO] Connection from ('127.0.0.1', 57649)
+2026-05-20 20:50:37,868 [INFO] Connection from ('127.0.0.1', 57650)
+2026-05-20 20:50:37,868 [INFO] GET /api/artists/17
+2026-05-20 20:50:37,868 [INFO] Connection from ('127.0.0.1', 57651)
+2026-05-20 20:50:37,868 [INFO] GET /api/artists/1
+2026-05-20 20:50:37,869 [INFO] GET /api/artists/5
+2026-05-20 20:50:37,869 [INFO] Connection from ('127.0.0.1', 57652)
+2026-05-20 20:50:37,871 [INFO] GET /api/artists/19
+2026-05-20 20:50:45,110 [INFO] Connection from ('127.0.0.1', 57661)
+2026-05-20 20:50:45,111 [INFO] GET /api/home
+2026-05-20 20:50:45,257 [INFO] Connection from ('127.0.0.1', 57665)
+2026-05-20 20:50:45,257 [INFO] GET /api/favorites
+2026-05-20 20:50:49,298 [INFO] Connection from ('127.0.0.1', 55712)
+2026-05-20 20:50:49,299 [INFO] GET /api/favorites
+2026-05-20 20:50:51,826 [INFO] Connection from ('127.0.0.1', 55715)
+2026-05-20 20:50:51,827 [INFO] GET /api/playlists
+2026-05-20 20:50:53,903 [INFO] Connection from ('127.0.0.1', 55718)
+2026-05-20 20:50:53,904 [INFO] GET /api/tracks
+2026-05-20 20:50:55,921 [INFO] Connection from ('127.0.0.1', 55721)
+2026-05-20 20:50:55,922 [INFO] GET /api/home
+2026-05-20 20:50:56,074 [INFO] Connection from ('127.0.0.1', 55725)
+2026-05-20 20:50:56,074 [INFO] GET /api/favorites
+2026-05-20 20:51:44,655 [INFO] Connection from ('127.0.0.1', 55737)
+2026-05-20 20:51:44,655 [INFO] GET /api/tracks/21/stream

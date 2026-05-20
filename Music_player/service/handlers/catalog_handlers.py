@@ -490,3 +490,25 @@ def handle_update_artist_cover(client_socket, artist_id, headers, body, current_
     }
 
     send_response(client_socket, build_json_response(200, "OK", payload))
+
+def handle_home_data(client_socket, current_user):
+    if not current_user:
+        tracks = db.get_all_tracks(only_public=True)
+    else:
+        tracks = db.get_all_tracks(
+            user_id=current_user["id"],
+            only_public=True
+        )
+
+    artists = db.get_all_artists()
+
+    payload = {
+        "status": "success",
+        "tracks": [track_to_dict(track) for track in tracks],
+        "artists": artists,
+    }
+
+    send_response(
+        client_socket,
+        build_json_response(200, "OK", payload)
+    )

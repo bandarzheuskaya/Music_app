@@ -62,7 +62,12 @@ function renderTrackCards(container, tracks, options = {}) {
         const coverUrl = getTrackCoverUrl(track);
 
         const coverHtml = coverUrl
-            ? `<img class="track-card-cover-image" src="${escapeHtml(coverUrl)}" alt="Обложка">`
+            ? `<img
+            class="track-card-cover-image"
+            src="${escapeHtml(coverUrl)}"
+            loading="lazy"
+            alt="Обложка"
+       >`
             : `<div class="track-card-cover-placeholder">♪</div>`;
 
         const canModify = typeof canModifyTrackForCurrentUser === "function"
