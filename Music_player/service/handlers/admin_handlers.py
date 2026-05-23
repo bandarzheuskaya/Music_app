@@ -2,6 +2,10 @@ import service.database as db
 
 from service.permissions import require_admin
 from service.serializers import track_to_dict, user_to_admin_dict
+from service.file_service import (
+    remove_unused_audio_file,
+    remove_unused_cover_file,
+)
 from service.utils import (
     build_error_response,
     build_json_response,
@@ -94,11 +98,23 @@ def handle_admin_delete_user_track(
         )
         return
 
+    source_type = track[6]
+    file_path = track[8]
+    file_hash = track[9]
+    cover_path = track[11]
+    cover_hash = track[12]
+    track_title = track[4]
+
     db.delete_track(track_id)
+
+    if source_type == "local":
+        remove_unused_audio_file(file_path, file_hash)
+
+    remove_unused_cover_file(cover_path, cover_hash)
 
     db.create_notification(
         user_id,
-        f'Ваш трек "{track[4]}" был удалён администратором'
+        f'Ваш трек "{track_title}" был удалён администратором'
     )
 
     payload = {

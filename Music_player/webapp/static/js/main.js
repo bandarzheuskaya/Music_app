@@ -642,20 +642,24 @@ async function renderTracksPage(searchQuery = "", type = "common") {
             : "Библиотека треков";
     }
 
-    const homeResult = await apiRequest("/api/home");
+    const tracksResult = await apiGetTracks(currentTracksType);
 
-if (homeResult.status !== "success") {
-    showMessage(homeResult.message || "Ошибка загрузки");
-    return;
-}
+    if (tracksResult.status !== "success") {
+        showMessage(tracksResult.message || "Ошибка загрузки");
+        return;
+    }
 
-allTracksCache = homeResult.tracks || [];
+    allTracksCache = tracksResult.tracks || [];
 
-await refreshFavoriteTrackIds();
+    await refreshFavoriteTrackIds();
 
-renderTracks(allTracksCache);
+    renderTracks(allTracksCache);
 
-renderArtists(homeResult.artists || []);
+    const artistsResult = await apiGetArtists();
+
+    if (artistsResult.status === "success") {
+        renderArtists(artistsResult.artists || []);
+    }
 
     if (searchQuery) {
         const sharedSearchInput = getElement("shared-search-input");

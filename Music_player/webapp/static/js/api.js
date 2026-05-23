@@ -4,12 +4,15 @@ const apiCache = new Map();
 
 async function apiRequest(path, options = {}) {
     try {
-        const response = await fetch(`${API_BASE}${path}`, {
-            credentials: "include",
-            cache: "no-store",
-            ...options,
-            headers: options.headers || undefined
-        });
+        const method = (options.method || "GET").toUpperCase();
+const isGetRequest = method === "GET";
+
+const response = await fetch(`${API_BASE}${path}`, {
+    credentials: "include",
+    cache: isGetRequest ? "default" : "no-store",
+    ...options,
+    headers: options.headers || undefined
+});
 
         if (response.status === 204) {
             return { status: "success" };
@@ -64,6 +67,10 @@ async function cachedGet(path, ttl = 30000) {
     return result;
 }
 
+function clearApiCache() {
+    apiCache.clear();
+}
+
 function buildTrackQuery(type = "all") {
     const params = new URLSearchParams();
 
@@ -100,7 +107,7 @@ async function apiGetArtistById(artistId) {
 }
 
 async function apiGetArtistTracks(artistId) {
-    return apiRequest(`/api/artists/${artistId}/tracks`);
+    return cachedGet(`/api/artists/${artistId}/tracks`);
 }
 
 async function apiGetArtistAlbums(artistId) {
@@ -108,7 +115,7 @@ async function apiGetArtistAlbums(artistId) {
 }
 
 async function apiGetAlbumsByArtist(artist) {
-    return apiRequest(`/api/albums?artist=${encodeURIComponent(artist)}`);
+    return cachedGet(`/api/albums?artist=${encodeURIComponent(artist)}`);
 }
 
 async function apiGetAlbumById(albumId) {
@@ -116,77 +123,131 @@ async function apiGetAlbumById(albumId) {
 }
 
 async function apiGetAlbumTracks(albumId) {
-    return apiRequest(`/api/albums/${albumId}/tracks`);
+    return cachedGet(`/api/albums/${albumId}/tracks`);
 }
 
 async function apiCreateAlbum(payload) {
-    return apiRequest("/api/albums", {
+    const result = await apiRequest("/api/albums", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(payload)
     });
+
+    if (result.status !== "error") {
+        clearApiCache();
+    }
+
+    return result;
 }
 
 async function apiCreateTrack(formData) {
-    return apiRequest("/api/tracks", {
+    const result = await apiRequest("/api/tracks", {
         method: "POST",
         body: formData
     });
+
+    if (result.status !== "error") {
+        clearApiCache();
+    }
+
+    return result;
 }
 
 async function apiDeleteTrack(trackId) {
-    return apiRequest(`/api/tracks/${trackId}`, {
+    const result = await apiRequest(`/api/tracks/${trackId}`, {
         method: "DELETE"
     });
+
+    if (result.status !== "error") {
+        clearApiCache();
+    }
+
+    return result;
 }
 
 async function apiUpdateTrack(trackId, payload) {
-    return apiRequest(`/api/tracks/${trackId}`, {
+    const result = await apiRequest(`/api/tracks/${trackId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(payload)
     });
+
+    if (result.status !== "error") {
+        clearApiCache();
+    }
+
+    return result;
 }
 
 async function apiUpdateTrackCover(trackId, formData) {
-    return apiRequest(`/api/tracks/${trackId}/cover`, {
+    const result = await apiRequest(`/api/tracks/${trackId}/cover`, {
         method: "POST",
         body: formData
     });
+
+    if (result.status !== "error") {
+        clearApiCache();
+    }
+
+    return result;
 }
 
 async function apiUpdateAlbum(albumId, payload) {
-    return apiRequest(`/api/albums/${albumId}`, {
+    const result = await apiRequest(`/api/albums/${albumId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(payload)
     });
+
+    if (result.status !== "error") {
+        clearApiCache();
+    }
+
+    return result;
 }
 
 async function apiUpdateAlbumCover(albumId, formData) {
-    return apiRequest(`/api/albums/${albumId}/cover`, {
+    const result = await apiRequest(`/api/albums/${albumId}/cover`, {
         method: "POST",
         body: formData
     });
+
+    if (result.status !== "error") {
+        clearApiCache();
+    }
+
+    return result;
 }
 
 async function apiUpdateArtistCover(artistId, formData) {
-    return apiRequest(`/api/artists/${artistId}/cover`, {
+    const result = await apiRequest(`/api/artists/${artistId}/cover`, {
         method: "POST",
         body: formData
     });
+
+    if (result.status !== "error") {
+        clearApiCache();
+    }
+
+    return result;
 }
 
 async function apiDeleteCover(entityType, entityId) {
-    return apiRequest(`/api/covers/${entityType}/${entityId}`, {
+    const result = await apiRequest(`/api/covers/${entityType}/${entityId}`, {
         method: "DELETE"
     });
+
+    if (result.status !== "error") {
+        clearApiCache();
+    }
+
+    return result;
 }
 
 async function apiRegister(usernameOrPayload, email, password) {
