@@ -3,50 +3,51 @@ const API_BASE = `${window.location.protocol}//${window.location.hostname}:8080`
 const apiCache = new Map();
 
 async function apiRequest(path, options = {}) {
-    try {
-        const method = (options.method || "GET").toUpperCase();
-const isGetRequest = method === "GET";
+  try {
+    const method = (options.method || "GET").toUpperCase();
+    const isGetRequest = method === "GET";
 
-const response = await fetch(`${API_BASE}${path}`, {
-    credentials: "include",
-    cache: isGetRequest ? "default" : "no-store",
-    ...options,
-    headers: options.headers || undefined
-});
+    const response = await fetch(`${API_BASE}${path}`, {
+      credentials: "include",
+      cache: isGetRequest ? "default" : "no-store",
+      ...options,
+      headers: options.headers || undefined
+    });
 
-        if (response.status === 204) {
-            return { status: "success" };
-        }
-
-        let data = null;
-
-        try {
-            data = await response.json();
-        } catch (_error) {
-            data = null;
-        }
-
-        if (!response.ok) {
-            return {
-                status: "error",
-                message:
-                    data?.message ||
-                    `Ошибка сервера (${response.status})`
-            };
-        }
-
-        return data || {
-            status: "success"
-        };
-
-    } catch (_error) {
-        return {
-            status: "error",
-            message: "Не удалось подключиться к серверу"
-        };
+    if (response.status === 204) {
+      return { status: "success" };
     }
-}
 
+    let data = null;
+    try {
+      data = await response.json();
+    } catch (_error) {
+      data = null;
+    }
+
+    if (!response.ok) {
+      if (response.status === 404) {
+        return {
+          status: "error",
+          code: "NOT_FOUND",
+          message: data?.message || "Не найдено"
+        };
+      }
+      return {
+        status: "error",
+        message: data?.message || `Ошибка сервера (${response.status})`
+      };
+    }
+
+    return data || { status: "success" };
+
+  } catch (_error) {
+    return {
+      status: "error",
+      message: "Не удалось подключиться к серверу"
+    };
+  }
+}
 
 async function cachedGet(path, ttl = 30000) {
     const cached = apiCache.get(path);

@@ -4,11 +4,18 @@ import re
 import hashlib
 import logging
 import threading
+import time
+import time
 
 from http.cookies import SimpleCookie
 from urllib.parse import parse_qs, urlparse
 
 from service.settings import LOG_FILE
+
+try:
+    from service.settings import ALLOWED_ORIGINS
+except ImportError:
+    ALLOWED_ORIGINS = []
 
 
 CLIENT_DISCONNECT_ERRORS = (
@@ -28,7 +35,15 @@ def set_request_origin(headers):
 def get_cors_origin():
     origin = getattr(_request_context, "origin", None)
 
-    if origin and origin.endswith(":5500"):
+    if not origin:
+        return None
+
+    # Allow origins explicitly listed in config
+    if ALLOWED_ORIGINS and origin in ALLOWED_ORIGINS:
+        return origin
+
+    # Fallback: allow any origin on port 5500 (Live Server default)
+    if origin.endswith(":5500"):
         return origin
 
     return None
@@ -425,8 +440,16 @@ def safe_remove_file(file_path):
 
     abs_path = os.path.abspath(file_path)
 
-    if os.path.exists(abs_path):
+    if not os.path.exists(abs_path):
+        return
+
+    for attempt in range(10):
         try:
             os.remove(abs_path)
+            return
         except OSError as e:
-            log_error(f"Failed to remove file {abs_path}: {e}")
+            if attempt == 9:
+                log_error(f"Failed to remove file {abs_path}: {e}")
+                return
+
+            time.sleep(0.5)

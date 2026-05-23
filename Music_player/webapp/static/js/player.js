@@ -24,6 +24,7 @@ let durationLabel = null;
 let playerQueue = [];
 let allTracksForArtistBlock = [];
 let currentTrackIndex = -1;
+let currentTrackId = null;
 let isSeeking = false;
 let playerInitialized = false;
 
@@ -196,6 +197,8 @@ function playTrack(track) {
     }
     if (!audio) return;
 
+    if (typeof hideMessage === 'function') hideMessage();
+
     const foundIndex = playerQueue.findIndex(item => item.id === track.id);
     if (foundIndex !== -1) {
         currentTrackIndex = foundIndex;
@@ -205,6 +208,7 @@ function playTrack(track) {
     }
 
     audio.src = `${API_BASE}/api/tracks/${track.id}/stream`;
+    currentTrackId = track.id;
     updatePlayerInfo(track);
     audio.play().catch(() => {});
 
@@ -296,6 +300,29 @@ if (closeButton) {
 
     if (!audio) return;
 
+    audio.addEventListener('error', () => {
+  const err = audio.error;
+  const isNotFound = err && (err.code === MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED || err.code === MediaError.MEDIA_ERR_NETWORK);
+
+  if (playPauseButton) playPauseButton.textContent = '▶';
+  if (seekRange) seekRange.value = 0;
+  if (currentTimeLabel) currentTimeLabel.textContent = '0:00';
+
+  currentTrackId = null;
+  currentTrackIndex = -1;
+
+
+  const msg = isNotFound
+    ? 'Аудиофайл не найден на сервере'
+    : 'Ошибка воспроизведения трека';
+
+  if (typeof showMessage === 'function') {
+    showMessage(msg, 'error');
+  } else {
+    alert(msg);
+  }
+});
+
     if (playPauseButton) {
         playPauseButton.addEventListener("click", () => {
             if (!audio.src) return;
@@ -383,8 +410,11 @@ function closePlayer() {
 
     audio.pause();
     audio.currentTime = 0;
+    audio.removeAttribute("src");
+    audio.load();
 
     currentTrackIndex = -1;
+    currentTrackId = null;
     playerQueue = [];
 
     const player = document.getElementById("bottom-player");
@@ -393,6 +423,25 @@ function closePlayer() {
     }
 
     resetSidePanel();
+}
+
+async function releaseTrackFromPlayer(trackId = null) {
+    if (!audio) return;
+
+    if (trackId !== null && String(currentTrackId) !== String(trackId)) {
+        return;
+    }
+
+    audio.pause();
+    audio.currentTime = 0;
+    audio.src = "";
+    audio.removeAttribute("src");
+    audio.load();
+
+    currentTrackId = null;
+    currentTrackIndex = -1;
+
+    await new Promise(resolve => setTimeout(resolve, 500));
 }
 
 window.addEventListener("DOMContentLoaded", () => {

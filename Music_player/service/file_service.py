@@ -6,9 +6,27 @@ import service.database as db
 from service.settings import UPLOAD_DIR, COVER_DIR
 from service.utils import (
     calculate_bytes_hash,
+    calculate_file_hash,
     make_unique_filename,
     safe_remove_file,
 )
+
+
+def find_existing_file_on_disk_by_hash(directory, file_hash):
+    if not file_hash or not os.path.isdir(directory):
+        return None
+
+    for root, _dirs, files in os.walk(directory):
+        for filename in files:
+            full_path = os.path.join(root, filename)
+
+            try:
+                if calculate_file_hash(full_path) == file_hash:
+                    return filename, os.path.relpath(full_path), file_hash
+            except OSError:
+                continue
+
+    return None
 
 
 def save_or_reuse_audio_file(original_filename, file_content):
@@ -19,6 +37,11 @@ def save_or_reuse_audio_file(original_filename, file_content):
 
     if existing_file:
         return existing_file[0], existing_file[1], file_hash
+
+    existing_file_on_disk = find_existing_file_on_disk_by_hash(UPLOAD_DIR, file_hash)
+
+    if existing_file_on_disk:
+        return existing_file_on_disk
 
     saved_filename = make_unique_filename(UPLOAD_DIR, original_filename)
     full_path = os.path.join(UPLOAD_DIR, saved_filename)
