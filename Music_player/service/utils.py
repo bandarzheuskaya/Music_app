@@ -38,11 +38,9 @@ def get_cors_origin():
     if not origin:
         return None
 
-    # Allow origins explicitly listed in config
     if ALLOWED_ORIGINS and origin in ALLOWED_ORIGINS:
         return origin
 
-    # Fallback: allow any origin on port 5500 (Live Server default)
     if origin.endswith(":5500"):
         return origin
 

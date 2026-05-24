@@ -24,6 +24,8 @@ from service.utils import (
     send_response,
     log_info,
     validate_cover_file,
+    json_dumps,
+    calculate_bytes_hash,
 )
 
 
@@ -77,7 +79,7 @@ def send_cover_file(client_socket, cover_path, cover_hash, not_found_message, he
     send_response(client_socket, response)
 
 
-def handle_get_artists(client_socket):
+def handle_get_artists(client_socket, headers):
     artists = db.get_all_artists()
 
     payload = {
@@ -85,14 +87,48 @@ def handle_get_artists(client_socket):
         "artists": artists,
     }
 
-    send_response(client_socket, build_json_response(200, "OK", payload))
+    artists_bytes = "\n".join(artists).encode("utf-8")
+    etag_hash = calculate_bytes_hash(artists_bytes)
+    etag = f'"{etag_hash[:16]}"'
 
+    client_etag = headers.get("if-none-match")
 
-def handle_get_artist(client_socket, artist_id):
+    if etag and client_etag == etag:
+        response = build_response(
+            304,
+            "Not Modified",
+            body=b"",
+            content_type="application/json; charset=utf-8",
+            extra_headers={
+                "ETag": etag,
+                "Cache-Control": "no-cache",
+            },
+        )
+        send_response(client_socket, response)
+        return
+
+    body = json_dumps(payload)
+    response = build_response(
+        200,
+        "OK",
+        body=body,
+        content_type="application/json; charset=utf-8",
+        extra_headers={
+            "ETag": etag,
+            "Cache-Control": "no-cache",
+        },
+    )
+
+    send_response(client_socket, response)
+
+def handle_get_artist(client_socket, artist_id, headers):
     artist = db.get_artist_by_id(artist_id)
 
     if not artist:
-        send_response(client_socket, build_error_response(404, "Not Found", "Artist not found"))
+        send_response(
+            client_socket,
+            build_error_response(404, "Not Found", "Artist not found"),
+        )
         return
 
     payload = {
@@ -100,14 +136,46 @@ def handle_get_artist(client_socket, artist_id):
         "artist": artist_to_dict(artist),
     }
 
-    send_response(client_socket, build_json_response(200, "OK", payload))
+    body = json_dumps(payload)
+    etag_hash = calculate_bytes_hash(body)
+    etag = f'"{etag_hash[:16]}"'
 
+    client_etag = headers.get("if-none-match")
 
-def handle_get_artist_tracks(client_socket, artist_id):
+    if client_etag == etag:
+        response = build_response(
+            304,
+            "Not Modified",
+            body=b"",
+            content_type="application/json; charset=utf-8",
+            extra_headers={
+                "ETag": etag,
+                "Cache-Control": "no-cache",
+            },
+        )
+        send_response(client_socket, response)
+        return
+
+    response = build_response(
+        200,
+        "OK",
+        body=body,
+        content_type="application/json; charset=utf-8",
+        extra_headers={
+            "ETag": etag,
+            "Cache-Control": "no-cache",
+        },
+    )
+    send_response(client_socket, response)
+
+def handle_get_artist_tracks(client_socket, artist_id, headers):
     artist = db.get_artist_by_id(artist_id)
 
     if not artist:
-        send_response(client_socket, build_error_response(404, "Not Found", "Artist not found"))
+        send_response(
+            client_socket,
+            build_error_response(404, "Not Found", "Artist not found"),
+        )
         return
 
     tracks = db.get_tracks_by_artist_id(artist_id)
@@ -117,14 +185,46 @@ def handle_get_artist_tracks(client_socket, artist_id):
         "tracks": [track_to_dict(track) for track in tracks],
     }
 
-    send_response(client_socket, build_json_response(200, "OK", payload))
+    body = json_dumps(payload)
+    etag_hash = calculate_bytes_hash(body)
+    etag = f'"{etag_hash[:16]}"'
 
+    client_etag = headers.get("if-none-match")
 
-def handle_get_artist_albums(client_socket, artist_id):
+    if client_etag == etag:
+        response = build_response(
+            304,
+            "Not Modified",
+            body=b"",
+            content_type="application/json; charset=utf-8",
+            extra_headers={
+                "ETag": etag,
+                "Cache-Control": "no-cache",
+            },
+        )
+        send_response(client_socket, response)
+        return
+
+    response = build_response(
+        200,
+        "OK",
+        body=body,
+        content_type="application/json; charset=utf-8",
+        extra_headers={
+            "ETag": etag,
+            "Cache-Control": "no-cache",
+        },
+    )
+    send_response(client_socket, response)
+
+def handle_get_artist_albums(client_socket, artist_id, headers):
     artist = db.get_artist_by_id(artist_id)
 
     if not artist:
-        send_response(client_socket, build_error_response(404, "Not Found", "Artist not found"))
+        send_response(
+            client_socket,
+            build_error_response(404, "Not Found", "Artist not found"),
+        )
         return
 
     albums = db.get_albums_by_artist(artist_id)
@@ -134,8 +234,37 @@ def handle_get_artist_albums(client_socket, artist_id):
         "albums": [album_to_dict(album) for album in albums],
     }
 
-    send_response(client_socket, build_json_response(200, "OK", payload))
+    body = json_dumps(payload)
+    etag_hash = calculate_bytes_hash(body)
+    etag = f'"{etag_hash[:16]}"'
 
+    client_etag = headers.get("if-none-match")
+
+    if client_etag == etag:
+        response = build_response(
+            304,
+            "Not Modified",
+            body=b"",
+            content_type="application/json; charset=utf-8",
+            extra_headers={
+                "ETag": etag,
+                "Cache-Control": "no-cache",
+            },
+        )
+        send_response(client_socket, response)
+        return
+
+    response = build_response(
+        200,
+        "OK",
+        body=body,
+        content_type="application/json; charset=utf-8",
+        extra_headers={
+            "ETag": etag,
+            "Cache-Control": "no-cache",
+        },
+    )
+    send_response(client_socket, response)
 
 def handle_get_albums(client_socket, query_params):
     artist_name = query_params.get("artist", [""])[0].strip()

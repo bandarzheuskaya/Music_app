@@ -72,96 +72,6 @@ from service.handlers.admin_handlers import (
 from service.handlers.notification_handlers import handle_get_notifications
 
 
-def handle_static_route(
-    handler,
-    client_socket,
-    query_params,
-    headers,
-    body,
-    current_user,
-):
-    if handler in (
-        handle_register,
-        handle_login,
-    ):
-        handler(client_socket, headers, body)
-        return True
-
-    if handler == handle_logout:
-        handler(client_socket, headers)
-        return True
-
-    if handler == handle_me:
-        handler(client_socket, headers)
-        return True
-
-    if handler == handle_get_tracks:
-        handler(client_socket, current_user, query_params)
-        return True
-
-    if handler == handle_search_tracks:
-        handler(client_socket, query_params, current_user)
-        return True
-
-    if handler == handle_get_artists:
-        handler(client_socket)
-        return True
-
-    if handler == handle_get_albums:
-        handler(client_socket, query_params)
-        return True
-
-    if handler in (
-        handle_create_album,
-        handle_create_track,
-        handle_create_playlist,
-    ):
-        handler(client_socket, headers, body, current_user)
-        return True
-
-    if handler == handle_home_data:
-        handler(client_socket, current_user)
-        return True
-
-    if handler in (
-        handle_get_favorites,
-        handle_get_playlists,
-        handle_admin_get_users,
-        handle_get_notifications,
-    ):
-        handler(client_socket, current_user)
-        return True
-
-    return False
-
-
-STATIC_ROUTES = {
-    ("POST", "/api/auth/register"): handle_register,
-    ("POST", "/api/auth/login"): handle_login,
-    ("POST", "/api/auth/logout"): handle_logout,
-    ("GET", "/api/auth/me"): handle_me,
-
-    ("GET", "/api/tracks"): handle_get_tracks,
-    ("GET", "/api/tracks/search"): handle_search_tracks,
-    ("POST", "/api/tracks"): handle_create_track,
-
-    ("GET", "/api/artists"): handle_get_artists,
-
-    ("GET", "/api/albums"): handle_get_albums,
-    ("POST", "/api/albums"): handle_create_album,
-
-    ("GET", "/api/favorites"): handle_get_favorites,
-
-    ("GET", "/api/playlists"): handle_get_playlists,
-    ("POST", "/api/playlists"): handle_create_playlist,
-
-    ("GET", "/api/admin/users"): handle_admin_get_users,
-
-    ("GET", "/api/notifications"): handle_get_notifications,
-    ("GET", "/api/home"): handle_home_data,
-}
-
-
 def dispatch_request(client_socket, method, path_only, query_params, headers, body):
     if method == "OPTIONS":
         send_response(client_socket, build_empty_response(204, "No Content"))
@@ -169,20 +79,36 @@ def dispatch_request(client_socket, method, path_only, query_params, headers, bo
 
     current_user = auth.get_current_user(headers)
 
-    static_handler = STATIC_ROUTES.get((method, path_only))
+    static_routes = {
+        ("POST", "/api/auth/register"): lambda: handle_register(client_socket, headers, body),
+        ("POST", "/api/auth/login"): lambda: handle_login(client_socket, headers, body),
+        ("POST", "/api/auth/logout"): lambda: handle_logout(client_socket, headers),
+        ("GET", "/api/auth/me"): lambda: handle_me(client_socket, headers),
 
-    if static_handler:
-        handled = handle_static_route(
-            static_handler,
-            client_socket,
-            query_params,
-            headers,
-            body,
-            current_user,
-        )
+        ("GET", "/api/tracks"): lambda: handle_get_tracks(client_socket, current_user, query_params),
+        ("POST", "/api/tracks"): lambda: handle_create_track(client_socket, headers, body, current_user),
+        ("GET", "/api/tracks/search"): lambda: handle_search_tracks(client_socket, query_params, current_user),
 
-        if handled:
-            return
+        ("GET", "/api/artists"): lambda: handle_get_artists(client_socket, headers),
+
+        ("GET", "/api/albums"): lambda: handle_get_albums(client_socket, query_params),
+        ("POST", "/api/albums"): lambda: handle_create_album(client_socket, headers, body, current_user),
+
+        ("GET", "/api/favorites"): lambda: handle_get_favorites(client_socket, current_user),
+
+        ("GET", "/api/playlists"): lambda: handle_get_playlists(client_socket, current_user),
+        ("POST", "/api/playlists"): lambda: handle_create_playlist(client_socket, headers, body, current_user),
+
+        ("GET", "/api/admin/users"): lambda: handle_admin_get_users(client_socket, current_user),
+
+        ("GET", "/api/notifications"): lambda: handle_get_notifications(client_socket, current_user),
+        ("GET", "/api/home"): lambda: handle_home_data(client_socket, current_user),
+    }
+
+    static_fn = static_routes.get((method, path_only))
+    if static_fn:
+        static_fn()
+        return
 
     # Избранные
 
@@ -234,19 +160,19 @@ def dispatch_request(client_socket, method, path_only, query_params, headers, bo
     match_artist = re.fullmatch(r"/api/artists/(\d+)", path_only)
     if match_artist and method == "GET":
         artist_id = int(match_artist.group(1))
-        handle_get_artist(client_socket, artist_id)
+        handle_get_artist(client_socket, artist_id, headers)
         return
 
     match_artist_tracks = re.fullmatch(r"/api/artists/(\d+)/tracks", path_only)
     if match_artist_tracks and method == "GET":
         artist_id = int(match_artist_tracks.group(1))
-        handle_get_artist_tracks(client_socket, artist_id)
+        handle_get_artist_tracks(client_socket, artist_id, headers)
         return
 
     match_artist_albums = re.fullmatch(r"/api/artists/(\d+)/albums", path_only)
     if match_artist_albums and method == "GET":
         artist_id = int(match_artist_albums.group(1))
-        handle_get_artist_albums(client_socket, artist_id)
+        handle_get_artist_albums(client_socket, artist_id, headers)
         return
 
     match_artist_cover = re.fullmatch(r"/api/artists/(\d+)/cover", path_only)
@@ -335,7 +261,6 @@ def dispatch_request(client_socket, method, path_only, query_params, headers, bo
     if match_delete_cover and method == "DELETE":
         entity_type = match_delete_cover.group(1)
         entity_id = int(match_delete_cover.group(2))
-
         handle_delete_cover(client_socket, entity_type, entity_id, current_user)
         return
 
@@ -357,11 +282,10 @@ def dispatch_request(client_socket, method, path_only, query_params, headers, bo
     if match_admin_delete_track and method == "DELETE":
         user_id = int(match_admin_delete_track.group(1))
         track_id = int(match_admin_delete_track.group(2))
-
         handle_admin_delete_user_track(client_socket, user_id, track_id, current_user)
         return
 
     send_response(
         client_socket,
-        build_error_response(404, "Not Found", "Endpoint not found")
+        build_error_response(404, "Not Found", "Endpoint not found"),
     )
