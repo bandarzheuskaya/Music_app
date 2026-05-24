@@ -34,3 +34,10 @@ MAX_COVER_SIZE = CONFIG.get("max_cover_size", 5 * 1024 * 1024)
 SESSION_LIFETIME_DAYS = CONFIG.get("session_lifetime_days", 7)
 
 LOG_FILE = str(BASE_DIR / CONFIG.get("log_file", "app.log"))
+
+ALLOWED_ORIGINS = CONFIG.get("allowed_origins", [])
+
+KEEP_ALIVE_CONFIG = CONFIG.get("keep_alive", {})
+KEEP_ALIVE_ENABLED = KEEP_ALIVE_CONFIG.get("enabled", True)
+KEEP_ALIVE_TIMEOUT = KEEP_ALIVE_CONFIG.get("timeout", 5)
+KEEP_ALIVE_MAX_REQUESTS = KEEP_ALIVE_CONFIG.get("max_requests", 100)

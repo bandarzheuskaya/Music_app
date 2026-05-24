@@ -5,7 +5,6 @@ import hashlib
 import logging
 import threading
 import time
-import time
 
 from http.cookies import SimpleCookie
 from urllib.parse import parse_qs, urlparse
@@ -16,6 +15,12 @@ try:
     from service.settings import ALLOWED_ORIGINS
 except ImportError:
     ALLOWED_ORIGINS = []
+
+try:
+    from service.settings import KEEP_ALIVE_TIMEOUT, KEEP_ALIVE_MAX_REQUESTS
+except ImportError:
+    KEEP_ALIVE_TIMEOUT = 5
+    KEEP_ALIVE_MAX_REQUESTS = 100
 
 
 CLIENT_DISCONNECT_ERRORS = (
@@ -32,15 +37,27 @@ def set_request_origin(headers):
     _request_context.origin = headers.get("origin")
 
 
+def set_response_connection(connection_value, timeout=None, max_requests=None):
+    _request_context.connection = connection_value
+    _request_context.keep_alive_timeout = timeout or KEEP_ALIVE_TIMEOUT
+    _request_context.keep_alive_max_requests = max_requests or KEEP_ALIVE_MAX_REQUESTS
+
+
+def get_response_connection():
+    return getattr(_request_context, "connection", "close")
+
+
 def get_cors_origin():
     origin = getattr(_request_context, "origin", None)
 
     if not origin:
         return None
 
+    # Allow origins explicitly listed in config
     if ALLOWED_ORIGINS and origin in ALLOWED_ORIGINS:
         return origin
 
+    # Fallback: allow any origin on port 5500 (Live Server default)
     if origin.endswith(":5500"):
         return origin
 
@@ -82,17 +99,23 @@ def build_response(
         extra_headers = {}
 
     cors_origin = get_cors_origin()
+    connection = get_response_connection()
 
     headers = {
         "Content-Type": content_type,
         "Content-Length": str(len(body)),
-        "Connection": "close",
+        "Connection": connection,
         "Access-Control-Allow-Origin": cors_origin or "null",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type",
         "Access-Control-Allow-Credentials": "true",
         "Access-Control-Max-Age": "86400"
     }
+
+    if connection.lower() == "keep-alive":
+        timeout = getattr(_request_context, "keep_alive_timeout", KEEP_ALIVE_TIMEOUT)
+        max_requests = getattr(_request_context, "keep_alive_max_requests", KEEP_ALIVE_MAX_REQUESTS)
+        headers["Keep-Alive"] = f"timeout={timeout}, max={max_requests}"
 
     headers.update(extra_headers)
 
@@ -173,6 +196,9 @@ def receive_http_request(client_socket, buffer_size):
         chunk = client_socket.recv(buffer_size)
 
         if not chunk:
+            if not data:
+                return None, None, None, {}, None
+
             break
 
         data += chunk
